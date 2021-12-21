@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:stacked_services/stacked_services.dart';
+
+// Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/app/app.router.dart';
 import 'package:unuber_mobile/config/development.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'env.dart';
 import 'utils/colors.dart' as appColors;
 

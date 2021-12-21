@@ -22,5 +22,5 @@ flutter pub run build_runner build
 - Se está haciendo uso de un paquete que automaticamente ordena los imports, para más información [click aquí]{https://pub.dev/packages/import_sorter}
 - Antes de enviar un Pull Request se debe actualizar las rutas ejecutando el siguiente comando:
 ```
-flutter pub run impor_sorter:main
+flutter pub run import_sorter:main
 ```

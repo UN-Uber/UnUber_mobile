@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+// Project imports:
 import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
 
 @StackedApp(
