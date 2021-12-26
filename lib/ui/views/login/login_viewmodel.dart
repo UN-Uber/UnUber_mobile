@@ -5,6 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 // Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/dialog_Type.dart';
+import 'package:unuber_mobile/app/app.router.dart';
 
 class LoginViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
@@ -18,7 +19,9 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future login() async{}
+  Future login() async{
+    _navigationService.clearStackAndShow(Routes.homeView);
+  }
 
   Future _showBasicDialog({required String description}) async {
     var response = await _dialogService.showCustomDialog(

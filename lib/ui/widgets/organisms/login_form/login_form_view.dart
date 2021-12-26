@@ -36,14 +36,14 @@ class LoginForm extends StatelessWidget {
                   tittle: 'Correo Electrónico',
                   textType: TextInputType.emailAddress,
                   onChange: model.changeEmail,
-                  errorMessage: model.snackBarError
+                  errorMessage: model.error(model.emailKey)
                 ),
                 EntryField(
                   tittle: 'Contraseña',
                   textType: TextInputType.visiblePassword,
                   isPassword: true,
                   onChange: model.changePassword,
-                  errorMessage: model.snackBarError
+                  errorMessage: model.error(model.passwordKey)
                 ),
                 GestureDetector(
                   onTap: model.navigateToForgotPassword,
@@ -67,7 +67,7 @@ class LoginForm extends StatelessWidget {
                     return SubmitButton(
                       text: model.loginButtonText,
                       onPressed: () {
-                        if(snapshot.hasData){
+                        if(!snapshot.hasData){
                           onSubmit();
                         }
                         else{
@@ -79,6 +79,7 @@ class LoginForm extends StatelessWidget {
                               onPressed: () {}
                             )
                           );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       },
                     );

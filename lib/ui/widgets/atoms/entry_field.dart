@@ -6,7 +6,7 @@ import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
 class EntryField extends StatelessWidget {
   final String tittle;
-  final String errorMessage;
+  final String? errorMessage;
   final String? suffixText;
   final bool isPassword;
   final IconData? suffixIcon;

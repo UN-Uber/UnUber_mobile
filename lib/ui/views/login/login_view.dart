@@ -17,7 +17,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     final _screenSize= MediaQuery.of(context).size;
     return ViewModelBuilder.reactive(
-      builder: (BuildContext context, LoginViewModel model, child) => SafeArea(
+      builder: (context, LoginViewModel model, child) => SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: Stack(
@@ -29,7 +29,6 @@ class LoginView extends StatelessWidget {
               ),
               Column(
                 children: <Widget>[
-                  BackButton(),
                   model.isLoading
                   ? LoadingIndicator()
                   : Expanded(

@@ -33,6 +33,11 @@ dependencies:
   # Handle font size according to screen size
   flutter_screenutil: ^5.0.1+2
 
+  # Environment variables management
+  shared_preferences: ^2.0.11
+
+  # Stream capabilities expansion
+  rxdart: ^0.26.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

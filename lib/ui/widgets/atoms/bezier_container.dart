@@ -20,7 +20,7 @@ class BezierContainer extends StatelessWidget {
             child: ClipPath(
                 clipper: ClipPainter(),
                 child: Container(
-                    height: -(_screenSize.height * .45),
+                    height: _screenSize.height * .45,
                     width: _screenSize.width,
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
