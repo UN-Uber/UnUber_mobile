@@ -1,13 +1,14 @@
-// Package imports:
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:unuber_mobile/app/app.router.dart';
 
 // Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:unuber_mobile/app/app.router.dart';
 
 class StartupViewModel extends BaseViewModel {
   final _navigationService= locator<NavigationService>();

@@ -4,8 +4,8 @@ import 'package:stacked_services/stacked_services.dart';
 
 // Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
-import 'package:unuber_mobile/models/dialog_Type.dart';
 import 'package:unuber_mobile/app/app.router.dart';
+import 'package:unuber_mobile/models/dialog_Type.dart';
 
 class LoginViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();

@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:stacked/stacked.dart';
+
+// Project imports:
 import 'package:unuber_mobile/ui/views/home/home_viewmodel.dart';
 
 class HomeView extends StatelessWidget {

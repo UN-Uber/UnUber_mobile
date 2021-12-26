@@ -1,10 +1,10 @@
 // Package imports:
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:unuber_mobile/services/validations/login_validation_service.dart';
-import 'package:unuber_mobile/ui/views/home/home_view.dart';
 
 // Project imports:
+import 'package:unuber_mobile/services/validations/login_validation_service.dart';
+import 'package:unuber_mobile/ui/views/home/home_view.dart';
 import 'package:unuber_mobile/ui/views/login/login_view.dart';
 import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
 

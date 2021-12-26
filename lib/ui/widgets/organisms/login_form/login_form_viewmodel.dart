@@ -1,10 +1,10 @@
 // Package imports:
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:unuber_mobile/app/app.router.dart';
 
 // Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
+import 'package:unuber_mobile/app/app.router.dart';
 import 'package:unuber_mobile/services/validations/login_validation_service.dart';
 
 class LoginFormViewModel extends MultipleStreamViewModel {
