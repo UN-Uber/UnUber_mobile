@@ -14,6 +14,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 // Project imports:
+import '../ui/views/forgot_password/forgot_password_view.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/login/login_view.dart';
 import '../ui/views/startup/startup_view.dart';
@@ -22,10 +23,12 @@ class Routes {
   static const String startupView = '/start';
   static const String loginView = '/login';
   static const String homeView = '/home';
+  static const String forgotPasswordView = '/forgot';
   static const all = <String>{
     startupView,
     loginView,
     homeView,
+    forgotPasswordView,
   };
 }
 
@@ -36,6 +39,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.startupView, page: StartupView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.homeView, page: HomeView),
+    RouteDef(Routes.forgotPasswordView, page: ForgotPasswordView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -55,6 +59,12 @@ class StackedRouter extends RouterBase {
     HomeView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const HomeView(),
+        settings: data,
+      );
+    },
+    ForgotPasswordView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ForgotPasswordView(),
         settings: data,
       );
     },

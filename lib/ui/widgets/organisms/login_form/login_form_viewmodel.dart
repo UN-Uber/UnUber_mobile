@@ -27,17 +27,19 @@ class LoginFormViewModel extends MultipleStreamViewModel {
   String get loginButtonText => _loginButtonText;
   String get snackBarError => _snackBarError;
   String get googleButtonText => _googleButtonText;
-  Stream<bool> get isValidForm => _loginValidationService.loginFormValidStream;
+  Stream<bool> get isValidForm => _loginValidationService.loginFormValid;
 
-  Future navigateToForgotPassword() async {}
+  Future navigateToForgotPassword() async {
+    _navigationService.navigateTo(Routes.forgotPasswordView);
+  }
 
   @override
   Map<String, StreamData> get streamsMap => {
-        _emailKey: StreamData(_loginValidationService.emailStream),
-        _passwordKey: StreamData(_loginValidationService.passwordStream),
-        _validFormKey: StreamData(_loginValidationService.loginFormValidStream)
+        _emailKey: StreamData(_loginValidationService.email),
+        _passwordKey: StreamData(_loginValidationService.password),
+        _validFormKey: StreamData(_loginValidationService.loginFormValid)
       };
 
-  changeEmail(String text) => _loginValidationService.changeEmail;
-  changePassword(String text) => _loginValidationService.changePassword;
+  changeEmail(String text) => _loginValidationService.emailSink.add(text);
+  changePassword(String text) => _loginValidationService.passwordSink.add(text);
 }

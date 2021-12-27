@@ -9,3 +9,6 @@ const secondary = const Color(0xFF50D2FC);
 const secondaryVariant = const Color(0xFF1E4B8B);
 const text = const Color(0xFF8A8A8A); // black
 const fillInput = Color(0xfff3f3f4);
+
+// Third party colors
+const googleButton = Color(0xFF4285F4);

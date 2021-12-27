@@ -5,20 +5,19 @@ import 'package:rxdart/rxdart.dart';
 import 'package:unuber_mobile/services/validations/validators.dart';
 
 class LoginValidationService with Validators {
-  final _emailController = BehaviorSubject<String>();
-  final _passwordController = BehaviorSubject<String>();
+  final _emailController = BehaviorSubject<String>.seeded('@');
+  final _passwordController = BehaviorSubject<String>.seeded('');
 
-  Stream<String> get emailStream =>
+  Stream<String> get email =>
       _emailController.stream.transform(validateEmail);
-  Stream<String> get passwordStream =>
+  Sink<String> get emailSink => _emailController.sink;
+
+  Stream<String> get password =>
       _passwordController.stream.transform(validatePasswordLogin);
-  Stream<bool> get loginFormValidStream => Rx.combineLatest2(emailStream, passwordStream, (e, p) => true);
+  Sink<String> get passwordSink => _passwordController.sink;
 
-  Function(String) get changeEmail => _emailController.add;
-  Function(String) get changePassword => _passwordController.sink.add;
-
-  String? get email => _emailController.value;
-  String? get password => _passwordController.value;
+  Stream<bool> get loginFormValid =>
+      Rx.combineLatest2(email, password, (e, p) => true);
 
   dispose() {
     _emailController.close();

@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 // Project imports:
+import 'package:unuber_mobile/ui/widgets/atoms/custom_divider.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/entry_field.dart';
+import 'package:unuber_mobile/ui/widgets/atoms/google_button.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/main_tittle.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/submit_button.dart';
 import 'package:unuber_mobile/ui/widgets/organisms/login_form/login_form_viewmodel.dart';
@@ -67,7 +69,7 @@ class LoginForm extends StatelessWidget {
                     return SubmitButton(
                       text: model.loginButtonText,
                       onPressed: () {
-                        if(!snapshot.hasData){
+                        if(snapshot.hasData){
                           onSubmit();
                         }
                         else{
@@ -84,6 +86,12 @@ class LoginForm extends StatelessWidget {
                       },
                     );
                   }
+                ),
+                CustomDivider(
+                  text: 'o ingrese usando'
+                ),
+                GoogleButton(
+                  onPressed: () => print(model.googleButtonText)
                 )
               ]
             )
