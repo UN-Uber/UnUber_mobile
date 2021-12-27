@@ -1,16 +1,26 @@
 # unuber_mobile
 
-A new Flutter project.
+Este repositiorio contiene la solución móvil de UnUber.
 
-## Getting Started
+## Vesión actual
+0.0.1
 
-This project is a starting point for a Flutter application.
+## Arquitectura (MVVM)
+La arquitectura del proyecto está basada en una arquitectura de referencia propuesta por la comunidad de flutter. Dicha arquitectura lleva por nombre **stacked**. Para más información [click aquí]{https://www.filledstacks.com/post/flutter-and-provider-architecture-using-stacked/}
 
-A few resources to get you started if this is your first Flutter project:
+## Modo de uso
+### Actualización o inclusión de una nueva ruta**
+- Agregar una View en a carpeta `ui/views`
+- Agregar un ViewModel en la carpeta `ui/views`
+- Referenciar la nueva vista en el archivo `router.dart`
+- Ejecutar el comando:
+```
+flutter pub run build_runner build
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Actualización de imports
+- Se está haciendo uso de un paquete que automaticamente ordena los imports, para más información [click aquí]{https://pub.dev/packages/import_sorter}
+- Antes de enviar un Pull Request se debe actualizar las rutas ejecutando el siguiente comando:
+```
+flutter pub run import_sorter:main
+```

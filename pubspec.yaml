@@ -1,5 +1,5 @@
 name: unuber_mobile
-description: A new Flutter project.
+description: Project for the course "Software Architecture" from the National University of Colombia
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -18,12 +18,32 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
+  # Stacked architecture
+  stacked: ^2.2.7
+
+  # Navigation
+  stacked_services: ^0.8.16
+
+  # Handle font size according to screen size
+  flutter_screenutil: ^5.0.1+2
+
+  # Environment variables management
+  shared_preferences: ^2.0.11
+
+  # Stream capabilities expansion
+  rxdart: ^0.26.0
+
+  # Conditional rendering
+  flutter_conditional_rendering: ^2.0.0
+
+  # Flutter Buttons
+  flutter_auth_buttons: ^0.10.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -32,6 +52,16 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  # Navigation
+  build_runner: ^2.1.2
+  stacked_generator: ^0.5.6
+
+  # GraphQL ussage
+  graphql: ^5.0.0
+
+  # Import sorting
+  import_sorter: ^4.6.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -44,10 +74,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
