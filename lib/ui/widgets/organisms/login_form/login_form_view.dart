@@ -8,14 +8,17 @@ import 'package:stacked/stacked.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/custom_divider.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/entry_field.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/google_button.dart';
-import 'package:unuber_mobile/ui/widgets/atoms/main_tittle.dart';
+import 'package:unuber_mobile/ui/widgets/atoms/main_title.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/submit_button.dart';
 import 'package:unuber_mobile/ui/widgets/organisms/login_form/login_form_viewmodel.dart';
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
+/// The class LoginForm is a [StatelessWidget] used to generate a form where the user can place an email or password
 class LoginForm extends StatelessWidget {
-  const LoginForm({ Key? key, required this.onSubmit }) : super(key: key);
+  /// Function to execute when the submit button is pressed
   final Function onSubmit;
+
+  const LoginForm({ Key? key, required this.onSubmit }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class LoginForm extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            MainTittle(
+            MainTitle(
               text: model.title,
               color: appColors.primaryVariant,
               fontSize: 30
@@ -35,13 +38,13 @@ class LoginForm extends StatelessWidget {
             Column(
               children: <Widget>[
                 EntryField(
-                  tittle: 'Correo Electrónico',
+                  title: 'Correo Electrónico',
                   textType: TextInputType.emailAddress,
                   onChange: model.changeEmail,
                   errorMessage: model.error(model.emailKey)
                 ),
                 EntryField(
-                  tittle: 'Contraseña',
+                  title: 'Contraseña',
                   textType: TextInputType.visiblePassword,
                   isPassword: true,
                   onChange: model.changePassword,

@@ -10,6 +10,7 @@ import 'package:unuber_mobile/ui/widgets/atoms/bezier_container.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/loading_indicator.dart';
 import 'package:unuber_mobile/ui/widgets/organisms/login_form/login_form_view.dart';
 
+/// The class Login View is the view for the login route
 class LoginView extends StatelessWidget {
   const LoginView({ Key? key }) : super(key: key);
 

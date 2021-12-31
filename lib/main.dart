@@ -16,6 +16,7 @@ void main() {
   Development();
 }
 
+/// Main widget for the app
 class MyApp extends StatelessWidget {
   final Env env;
   MyApp(this.env);

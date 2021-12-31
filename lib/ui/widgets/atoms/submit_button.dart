@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 import 'package:unuber_mobile/utils/constraints.dart' as constraints;
 
+/// The class SubmitButton is a [StatelessWidget] used to place a button for a form to select when no more changes are going to be done
 class SubmitButton extends StatelessWidget {
+  /// Text of the button
   final String text;
+  /// Function to be executed when the button is pressed
   final VoidCallback onPressed;
 
   const SubmitButton({ Key? key, required this.text, required this.onPressed}) : super(key: key);

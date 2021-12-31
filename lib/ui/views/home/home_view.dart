@@ -7,6 +7,7 @@ import 'package:stacked/stacked.dart';
 // Project imports:
 import 'package:unuber_mobile/ui/views/home/home_viewmodel.dart';
 
+/// The class HomeView is the view for the home route
 class HomeView extends StatelessWidget {
   const HomeView({ Key? key }) : super(key: key);
 
