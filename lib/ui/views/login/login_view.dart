@@ -35,7 +35,7 @@ class LoginView extends StatelessWidget {
                   : Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: LoginForm(onSubmit: model.login)
+                      child: LoginForm(onSubmit: model.login, changeNumber: model.updateTelephone)
                     )
                   )
                 ],
