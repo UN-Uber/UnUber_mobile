@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+/// The class LoafingIndicator is a [StatelessWidget] used to generate a ciruclar loading indicator where needed
 class LoadingIndicator extends StatelessWidget {
   const LoadingIndicator({ Key? key }) : super(key: key);
 

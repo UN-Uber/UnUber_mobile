@@ -8,6 +8,7 @@ import 'package:stacked/stacked.dart';
 // Project imports:
 import 'startup_viewmodel.dart';
 
+/// The class StartupView is the view for the startup route
 class StartupView extends StatelessWidget {
   const StartupView({ Key? key }) : super(key: key);
 

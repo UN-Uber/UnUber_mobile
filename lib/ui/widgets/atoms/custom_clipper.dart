@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+/// The class ClipPainter is a [StatelessWidget] used to generate the path for the
+/// bezier curve
 class ClipPainter extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {

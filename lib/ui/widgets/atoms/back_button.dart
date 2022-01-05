@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
+/// The class BackButton is a [StatelessWidget] used to pop the first route in the routes stack
+/// and return to the last route
 class BackButton extends StatelessWidget {
   const BackButton({Key? key}) : super(key: key);
 

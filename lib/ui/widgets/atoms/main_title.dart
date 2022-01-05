@@ -1,13 +1,20 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-class MainTittle extends StatelessWidget {
+/// The class MainTittle is a [StatelessWidget] used to display the main tittle in the app
+/// * Attributes:
+/// - text
+class MainTitle extends StatelessWidget {
+  /// Text to be displayed
   final String text;
+  /// Font color
   final Color color;
+  /// Size of he font
   final double fontSize;
+  /// alignement of the text in the tittle
   final TextAlign alignment;
 
-  const MainTittle({Key? key,
+  const MainTitle({Key? key,
       required this.text,
       required this.color,
       required this.fontSize,

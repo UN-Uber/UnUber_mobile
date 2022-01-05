@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 import 'package:unuber_mobile/utils/constraints.dart' as constraints;
 
+/// The class GoogleButton is a [StatelessWidget] used to display the google access button in the login route
 class GoogleButton extends StatelessWidget {
+  /// Function to execute when the button is pressed
   final VoidCallback onPressed;
+  
   const GoogleButton({Key? key, required this.onPressed}) : super(key: key);
 
   @override
@@ -27,7 +30,7 @@ class GoogleButton extends StatelessWidget {
             padding: EdgeInsets.all(1),
             child: Container(
               height: _screenSize.height * .075,
-              width: _screenSize.width * .883,
+              width: _screenSize.width - 42,
               decoration: BoxDecoration(
                 color: appColors.white,
                 borderRadius: BorderRadius.circular(constraints.btnRadius)
