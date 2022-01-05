@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:stacked_services/stacked_services.dart';
+
+// Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/dialog_type.dart';
 import 'package:unuber_mobile/ui/widgets/organisms/dialogs/single_message_dialog.dart';

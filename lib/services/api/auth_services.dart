@@ -1,5 +1,7 @@
-// Project imports:
+// Package imports:
 import 'package:shared_preferences/shared_preferences.dart';
+
+// Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/services/api/errors/api_errors.dart';

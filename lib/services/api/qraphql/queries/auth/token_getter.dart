@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:graphql/client.dart';
-import 'package:unuber_mobile/app/app.locator.dart';
 
 // Project imports:
+import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/services/api/errors/graphql_errors.dart';
 import 'package:unuber_mobile/services/api/qraphql/api_client.dart';

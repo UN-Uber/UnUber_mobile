@@ -1,7 +1,6 @@
 // Package imports:
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:unuber_mobile/utils/constraints.dart' as constraints;
 
 // Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
@@ -10,6 +9,7 @@ import 'package:unuber_mobile/models/dialog_type.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/services/api/auth_services.dart';
 import 'package:unuber_mobile/services/validations/login_validation_service.dart';
+import 'package:unuber_mobile/utils/constraints.dart' as constraints;
 import 'package:unuber_mobile/utils/logger.dart';
 
 /// The class LoginViewModel is the ViewModel for the login route

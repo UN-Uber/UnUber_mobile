@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:stacked_services/stacked_services.dart';
+
+// Project imports:
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
 class SingleMessageDialog extends StatelessWidget {

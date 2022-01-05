@@ -30,7 +30,7 @@ class GoogleButton extends StatelessWidget {
             padding: EdgeInsets.all(1),
             child: Container(
               height: _screenSize.height * .075,
-              width: _screenSize.width * .883,
+              width: _screenSize.width - 42,
               decoration: BoxDecoration(
                 color: appColors.white,
                 borderRadius: BorderRadius.circular(constraints.btnRadius)
