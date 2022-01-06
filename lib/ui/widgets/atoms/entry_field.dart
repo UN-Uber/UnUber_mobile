@@ -4,21 +4,36 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
+/// The class EntryField is a [StatelessWidget] used to customice a text field for multiple purposes
 class EntryField extends StatelessWidget {
-  final String tittle;
+  /// Title for the component
+  final String title;
+  /// Message to disply when an error occurs
   final String? errorMessage;
+  /// Hint for the user
+  final String? hintText;
+  /// Suffix text to place in the text field after user input
   final String? suffixText;
+  /// Prefix text to place in the text field before user input
+  final String? prefixText;
+  /// Flag to censor the content of the text field
   final bool isPassword;
+  /// Icon to place in the text field after user input
   final IconData? suffixIcon;
+  /// Icon to place in the text field before user input
   final IconData? prefixIcon;
+  /// Select the type of text to adapt the user keyboard correctly
   final TextInputType textType;
+  /// Function to execute when the text field suffers a change
   final Function(String) onChange;
 
   const EntryField(
       {Key? key,
       required this.errorMessage,
-      required this.tittle,
+      this.hintText,
+      required this.title,
       this.suffixText,
+      this.prefixText,
       this.isPassword = false,
       this.suffixIcon,
       this.prefixIcon,
@@ -35,7 +50,7 @@ class EntryField extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                tittle,
+                title,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -50,13 +65,15 @@ class EntryField extends StatelessWidget {
                       border: InputBorder.none,
                       fillColor: appColors.fillInput,
                       filled: true,
+                      hintText: this.hintText,
                       suffixIcon: this.suffixIcon != null
                           ? Icon(this.suffixIcon)
                           : null,
                       prefixIcon: this.prefixIcon != null
                           ? Icon(this.prefixIcon)
                           : null,
-                      suffixText: this.suffixText))
+                      suffixText: this.suffixText,
+                      prefixText: this.prefixText))
             ]));
   }
 }

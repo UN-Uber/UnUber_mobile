@@ -6,10 +6,14 @@
 
 // ignore_for_file: public_member_api_docs
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
+// Project imports:
 import '../ui/views/forgot_password/forgot_password_view.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/login/login_view.dart';

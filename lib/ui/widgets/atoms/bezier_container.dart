@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/custom_clipper.dart';
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
+/// The class BezierContainer is a [StatelessWidget] used to generate a bezier curve for decoration purposes
 class BezierContainer extends StatelessWidget {
   const BezierContainer({Key? key}) : super(key: key);
 

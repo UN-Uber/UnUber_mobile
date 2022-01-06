@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 
+/// The class CustomDivider is a [StatelessWidget] used to generate a more aesthetic divider
 class CustomDivider extends StatelessWidget {
   final String text;
 
@@ -26,6 +27,8 @@ class CustomDivider extends StatelessWidget {
         ]));
   }
 
+  /// The method _customExpanded is a expanded widget with some customization
+  /// - return a custom Expanded widget
   Widget _customExpanded() {
     return Expanded(
         child: Padding(
