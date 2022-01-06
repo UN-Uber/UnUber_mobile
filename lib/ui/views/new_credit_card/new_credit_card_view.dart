@@ -48,7 +48,7 @@ class _NewCreditCardViewState extends State<NewCreditCardView> {
                   child: Column(
                     children: <Widget>[
                       EntryField(
-                        tittle: 'Credit card number',
+                        title: 'Credit card number',
                         textType: TextInputType.number,
                         isPassword: false,
                         onChange: (text) {
@@ -61,14 +61,14 @@ class _NewCreditCardViewState extends State<NewCreditCardView> {
                         prefixIcon: conditionalIcon()                  
                       ),
                       EntryField(
-                        tittle: 'Due date',
+                        title: 'Due date',
                         textType: TextInputType.number,
                         isPassword: false,
                         onChange: model.CreditCardDueDateValidation,
                         errorMessage: model.error(model.cardDueDateKey),
                       ),
                       EntryField(
-                        tittle: 'CVV',
+                        title: 'CVV',
                         textType: TextInputType.number,
                         isPassword: false,
                         onChange: model.CreditCardCvvValidation,
