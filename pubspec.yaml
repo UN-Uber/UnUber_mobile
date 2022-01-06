@@ -39,6 +39,9 @@ dependencies:
   # Stream capabilities expansion
   rxdart: ^0.26.0
 
+  # Primarily used for handle Date types in a more easier way
+  intl: ^0.17.0
+
   # Conditional rendering
   flutter_conditional_rendering: ^2.0.0
 
@@ -102,3 +105,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  
+  # Custom icons for the credit cards (Visa and MasterCard)
+  
+  fonts:
+    - family:  MyApp
+      fonts:
+       - asset: lib/utils/fonts/CustomIcons.ttf
