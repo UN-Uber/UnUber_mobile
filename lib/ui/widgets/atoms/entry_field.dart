@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // Project imports:
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
@@ -19,13 +20,17 @@ class EntryField extends StatelessWidget {
   /// Flag to censor the content of the text field
   final bool isPassword;
   /// Icon to place in the text field after user input
-  final IconData? suffixIcon;
+  /// Changed to Widget becacuse define it only as an Icon limit the decoration posibilites
+  final Widget? suffixIcon;
   /// Icon to place in the text field before user input
-  final IconData? prefixIcon;
+  /// Changed to Widget becacuse define it only as an Icon limit the decoration posibilites
+  final Widget? prefixIcon;
   /// Select the type of text to adapt the user keyboard correctly
   final TextInputType textType;
   /// Function to execute when the text field suffers a change
   final Function(String) onChange;
+  /// Allow add format to the text in the text field
+  final List<TextInputFormatter> inputFormatters;
 
   const EntryField(
       {Key? key,
@@ -38,7 +43,8 @@ class EntryField extends StatelessWidget {
       this.suffixIcon,
       this.prefixIcon,
       required this.textType,
-      required this.onChange})
+      required this.onChange,
+      this.inputFormatters = const []})
       : super(key: key);
 
   @override
@@ -60,6 +66,7 @@ class EntryField extends StatelessWidget {
                   onChanged: this.onChange,
                   obscureText: this.isPassword,
                   keyboardType: this.textType,
+                  inputFormatters: this.inputFormatters,
                   decoration: InputDecoration(
                       errorText: this.errorMessage,
                       border: InputBorder.none,
@@ -67,10 +74,10 @@ class EntryField extends StatelessWidget {
                       filled: true,
                       hintText: this.hintText,
                       suffixIcon: this.suffixIcon != null
-                          ? Icon(this.suffixIcon)
+                          ? this.suffixIcon
                           : null,
                       prefixIcon: this.prefixIcon != null
-                          ? Icon(this.prefixIcon)
+                          ? (this.prefixIcon)
                           : null,
                       suffixText: this.suffixText,
                       prefixText: this.prefixText))
