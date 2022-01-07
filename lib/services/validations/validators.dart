@@ -76,11 +76,15 @@ class Validators {
   );
 
 
-  ///   Lunh Algorithm 
+  ///   Luhn Algorithm 
   /// 
   ///   The _validateCardNumber function uses the Luhn Algorithm to check
   ///   if the input is a possible valid value for a Credit Card. Only accepts
   ///   the Visa and Mastercard cards which start with 4 and 5 respectively.
+  /// 
+  ///   @param numbre is the number of the credit card to be checked
+  ///   return true if the number pass with the verification of the Luhn Algorithm,
+  ///          false if not.
 
   static bool _validateCardNumber(String number){
 
@@ -114,6 +118,10 @@ class Validators {
 
 
   ///   The _validateDueDate check if the credit card is expired or not
+  /// 
+  ///   @param date is the due date of the credit card with this format -> MM/YY
+  ///   return true if the due date is in the current month or future month,
+  ///          false if the month has alredy passed.
 
   static bool _validateDueDate(String date){
 
@@ -145,11 +153,16 @@ class Validators {
 
 
   ///   The _validateCVV check by a regular expresion if the cvv is valid or not
+  /// 
+  ///   @param cvv is the cvv number of the credit card to be checked
+  ///   return true if the cvv match with the regex and false if it doesn't match this.
   static bool _validateCVV(String cvv){
     String pattern = r'([0-9]{3})$';
     RegExp regExp = new RegExp(pattern);
 
-    if(regExp.hasMatch(cvv)) return true;
+    // I put the length verification anyway because for some reason the Regex also
+    // accepted the cvv with lenght > 3.
+    if(regExp.hasMatch(cvv) && cvv.length == 3) return true;
 
     return false;
   }
