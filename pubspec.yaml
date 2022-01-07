@@ -109,10 +109,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-  
-  # Custom icons for the credit cards (Visa and MasterCard)
-  
-  fonts:
-    - family:  MyApp
-      fonts:
-       - asset: lib/utils/fonts/CustomIcons.ttf
