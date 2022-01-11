@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:typed_data';
-
 // Package imports:
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';

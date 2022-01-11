@@ -6,8 +6,9 @@ import 'package:stacked/stacked.dart';
 
 // Project imports:
 import 'package:unuber_mobile/models/credit_card.dart';
+import 'package:unuber_mobile/ui/views/credit_card/credit_card_icon.dart';
+import 'package:unuber_mobile/ui/views/credit_card/credit_card_info/credit_card_info_view.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_list/credit_card_list_viewmodel.dart';
-import 'package:unuber_mobile/ui/widgets/atoms/submit_button.dart';
 
 class CreditCardsListView extends StatefulWidget {
   const CreditCardsListView({Key? key}): super(key: key);
@@ -19,6 +20,7 @@ class _CreditCardsListViewState extends State<CreditCardsListView> {
 
   late Future<List<CreditCard>> _cards;
   CreditCardListViewModel model = new CreditCardListViewModel();
+  final CreditCardIcon _creditCardIcon = new CreditCardIcon();
   @override
   void initState() {
     super.initState();
@@ -37,7 +39,16 @@ class _CreditCardsListViewState extends State<CreditCardsListView> {
                 color: Colors.white,
               )
             ),
-            backgroundColor: Colors.black
+            backgroundColor: Colors.black,
+          ),
+
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              model.navigateToAddCreditCard();
+            },
+            backgroundColor: Colors.black,
+            icon: Icon(Icons.add),
+            label: Text('Agregar'),
           ),
 
           body: FutureBuilder<List<CreditCard>>(
@@ -51,7 +62,18 @@ class _CreditCardsListViewState extends State<CreditCardsListView> {
                     final item = snapshot.data?.elementAt(i).creditCardNumber;
                     final int l = item.toString().length;
                     return ListTile(
-                      title: Text("**** "+item!.toString().substring(l-4,l)),
+                      leading: _creditCardIcon.creditCardConditionalIcon(item.toString()),
+                      title: Text(displayFormatCardNumber(item!)),
+                      onTap: () {
+                        CreditCard card;
+                        card = snapshot.data!.elementAt(i);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreditCardInfo(creditCard: card),
+                          ),
+                        );
+                      },
                     );
                   },
                 );
@@ -63,5 +85,17 @@ class _CreditCardsListViewState extends State<CreditCardsListView> {
       ),
       viewModelBuilder: () => CreditCardListViewModel(),
     );
+  }
+
+  String displayFormatCardNumber(int number){
+    String cardNumber = number.toString();
+    String formated = "";
+    int l = cardNumber.length, count = 0;
+    while(count < l){
+      formated += cardNumber.substring(count, count+ 4) + " ";
+      count += 4;
+    }
+
+    return formated;
   }
 }
