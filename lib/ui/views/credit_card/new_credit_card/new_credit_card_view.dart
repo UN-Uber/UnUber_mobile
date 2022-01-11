@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:stacked/stacked.dart';
+import 'package:unuber_mobile/ui/views/credit_card/credit_card_icon.dart';
 
 // Project imports:
 import 'package:unuber_mobile/ui/views/credit_card/new_credit_card/new_credit_card_viewmodel.dart';
@@ -18,6 +19,7 @@ class NewCreditCardView extends StatefulWidget {
 
 class _NewCreditCardViewState extends State<NewCreditCardView> {
 
+  final CreditCardIcon _creditCardIcon = new CreditCardIcon();
   final _formKey = GlobalKey<FormState>();
   String inputText = '';
 
@@ -61,7 +63,7 @@ class _NewCreditCardViewState extends State<NewCreditCardView> {
                             separator: ' ',
                           ),
                         ],
-                        prefixIcon: conditionalIcon()                 
+                        prefixIcon: _creditCardIcon.creditCardConditionalIcon(inputText)                 
                       ),
 
                       EntryField(
@@ -111,42 +113,6 @@ class _NewCreditCardViewState extends State<NewCreditCardView> {
         )
       ),
       viewModelBuilder: () => NewCreditCardViewModel(),
-    );
-  }
-
-
-  /// The conditionalIcon function change the credit card prefixIcon in function
-  /// of the number of this. Return the Visa or MasterCard icon if the number complies
-  /// with the defined prefix or a default credit card icon if the number doesn't complies
-  /// with the defined prefixes.
-  /// 
-  Widget conditionalIcon() {
-    String img = "";
-
-    // Prefix of the Visa cards
-    if(inputText.startsWith("4")){
-      img = 'visa_icon.png';
-    }
-
-    // Prefixes of the MasterCard cards
-    else if(inputText.startsWith("51") || inputText.startsWith("52") ||
-            inputText.startsWith("53") || inputText.startsWith("54") ||
-            inputText.startsWith("55")
-          )
-          {
-            img = 'mastercard_icon.png';
-          }
-    else{
-      return Icon(
-        Icons.credit_card,
-        size: 30.0,
-        color: Colors.grey[600],
-      );
-    }
-
-    return Image(
-      image: AssetImage('assets/images/$img'),
-      width: 20.0,
     );
   }
 }
