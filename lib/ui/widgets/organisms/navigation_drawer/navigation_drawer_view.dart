@@ -9,7 +9,8 @@ import 'package:unuber_mobile/ui/widgets/organisms/navigation_drawer/navigation_
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
 class NavigationDrawerView extends StatelessWidget {
-  const NavigationDrawerView({Key? key}) : super(key: key);
+  final Function()? accountTap;
+  const NavigationDrawerView({Key? key, required this.accountTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class NavigationDrawerView extends StatelessWidget {
                               Image(image: AssetImage(model.profileImage))))),
               ListTile(
                 title: Text('Account'),
+                onTap: this.accountTap
               )
             ]))),
         viewModelBuilder: () => NavigationDrawerViewModel());

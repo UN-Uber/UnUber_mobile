@@ -12,9 +12,8 @@ class LoginFormViewModel extends BaseViewModel {
   /// Service used to navigate to other routes
   final NavigationService _navigationService = locator<NavigationService>();
 
-  /// Service used to check if the email and password has valid inputs
-  final LoginValidationService _loginValidationService =
-      locator<LoginValidationService>();
+  /// Service used to check if the email, telephone and password has valid inputs
+  final _loginValidationService = locator<LoginValidationService>();
 
   /// Flag to identify if the user input is a telephone
   bool _isTelephone = false;
@@ -26,7 +25,7 @@ class LoginFormViewModel extends BaseViewModel {
   final String _loginButtonText = 'Ingresar';
 
   /// Error message for snackbar popup
-  final String _snackBarError = 'Verifica que los campos sean válidos';
+  final String _snackBarError = 'Verifica que todos los campos sean válidos';
 
   /// Google button text
   final String _googleButtonText = 'Ingresar con google';
@@ -52,9 +51,17 @@ class LoginFormViewModel extends BaseViewModel {
   /// The method navigateToForgotPassword is used to push the ForgotPassword route into the routes stack
   Future navigateToForgotPassword() async {
     _navigationService.navigateTo(Routes.forgotPasswordView);
+    _loginValidationService.resetService();
   }
 
-  updateFlag(bool value) {
+  /// The method navigateToSignup is used to push the Signup view into the routes stack
+  Future navigateToSignup() async {
+    _navigationService.navigateTo(Routes.signupView);
+    _loginValidationService.resetService();
+  }
+
+  /// The method updateFlag is used to update the flag isTelephone and notify the view
+  void updateFlag(bool value) {
     this._isTelephone = value;
     notifyListeners();
   }
