@@ -10,9 +10,7 @@ Future <ServerResponseModel> deleteCard (String token, {required int idCard}) as
 
   const String mutation = r'''
     mutation Mutation($idCard: Int!) {
-      deleteCard(idCard: $idCard){
-        String
-      }
+      deleteCard(idCard: $idCard)
     }
   ''';
 

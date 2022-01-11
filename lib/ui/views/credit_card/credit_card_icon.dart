@@ -31,9 +31,12 @@ class CreditCardIcon{
       );
     }
 
-    return Image(
-      image: AssetImage('assets/images/$img'),
-      width: 20.0,
+    return Padding(
+      padding: const EdgeInsets.all(6),
+      child: Image(
+        image: AssetImage('assets/images/$img'),
+        width: 20.0,
+      )
     );
   }
 
