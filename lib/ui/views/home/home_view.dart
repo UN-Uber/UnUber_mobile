@@ -19,7 +19,9 @@ class HomeView extends StatelessWidget {
         builder: (context, HomeViewModel model, child) => SafeArea(
               child: Scaffold(
                 key: model.scaffoldKey,
-                drawer: NavigationDrawerView(),
+                drawer: NavigationDrawerView(
+                  accountTap: (){},
+                ),
                 appBar: AppBar(
                     leading: GestureDetector(
                         onTap: () =>

@@ -77,7 +77,7 @@ class LoginViewModel extends BaseViewModel {
 
   /// The method _showBasicDialog display an error message to the user
   Future _showBasicDialog({required String description}) async {
-    var response = await _dialogService.showCustomDialog(
+    await _dialogService.showCustomDialog(
         variant: DialogType.SingleMessage,
         title: 'Error',
         description: description,
