@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:async';
-
 // Package imports:
 import 'package:intl/intl.dart';
 
@@ -51,29 +48,27 @@ class Validators {
     return regExp.hasMatch(value);
   }
 
-  final validateCreditCardNumber = StreamTransformer<String, String>.fromHandlers(
-    handleData: (creditCardNumber, sink) {
-      _validateCardNumber(creditCardNumber) && creditCardNumber.length == 16
-      ? sink.add(creditCardNumber) 
-      : sink.addError('El número de la tarjeta no es válido.');
-    }
-  );
 
-  final validateDueDate = StreamTransformer<String, String>.fromHandlers(
-    handleData: (dueDate, sink){
-      _validateDueDate(dueDate) && dueDate.length == 5
-      ? sink.add(dueDate)
-      : sink.addError('La tarjeta está vencida.');
-    }
-  );
+  /// The method checkCreditCardNumber is used to check if the given value is a valid credit card
+  /// - @Param card number in String
+  /// - return true if is valid, and false other way
+  bool checkCreditCardNumber(String creditCardNumber) {
+    return _validateCardNumber(creditCardNumber) && creditCardNumber.length == 16;
+  }
 
-  final validateCVV = StreamTransformer<String, String>.fromHandlers(
-    handleData: (cvv, sink){
-      _validateCVV(cvv)
-      ? sink.add(cvv)
-      : sink.addError('CVV no es válido.');
-    }
-  );
+  /// The method checkDueDate is used to check if the given value is a valid due date
+  /// - @Param due date in String
+  /// - return true if is valid, and false other way
+  bool checkDueDate(String dueDate) {
+    return _validateDueDate(dueDate) && dueDate.length == 5;
+  }
+
+  /// The method checkCVV is used to check if the given value is a valid cvv
+  /// - @Param cvv number in String
+  /// - return true if is valid, and false other way
+  bool checkCVV(String cvv) {
+    return _validateCVV(cvv);
+  }
 
 
   ///   Luhn Algorithm 
@@ -85,7 +80,7 @@ class Validators {
   ///   @param numbre is the number of the credit card to be checked
   ///   return true if the number pass with the verification of the Luhn Algorithm,
   ///          false if not.
-
+  /// 
   static bool _validateCardNumber(String number){
 
     // First check if the number satisfies the Regex
@@ -112,8 +107,7 @@ class Validators {
     if (sum % 10 == 0) {
       return true;
     }
-
-    return false;
+    else return false;
   }
 
 
@@ -122,7 +116,7 @@ class Validators {
   ///   @param date is the due date of the credit card with this format -> MM/YY
   ///   return true if the due date is in the current month or future month,
   ///          false if the month has alredy passed.
-
+  /// 
   static bool _validateDueDate(String date){
 
     if(date.length != 5) return false;
@@ -156,6 +150,7 @@ class Validators {
   /// 
   ///   @param cvv is the cvv number of the credit card to be checked
   ///   return true if the cvv match with the regex and false if it doesn't match this.
+  /// 
   static bool _validateCVV(String cvv){
     String pattern = r'([0-9]{3})$';
     RegExp regExp = new RegExp(pattern);

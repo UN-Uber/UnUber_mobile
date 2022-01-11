@@ -6,8 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 
 // Project imports:
-import 'package:unuber_mobile/ui/views/new_credit_card/new_credit_card_viewmodel.dart';
+import 'package:unuber_mobile/ui/views/credit_card/new_credit_card/new_credit_card_viewmodel.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/entry_field.dart';
+import 'package:unuber_mobile/ui/widgets/atoms/submit_button.dart';
 
 class NewCreditCardView extends StatefulWidget {
   const NewCreditCardView({Key? key}) : super (key: key);
@@ -51,9 +52,9 @@ class _NewCreditCardViewState extends State<NewCreditCardView> {
                           setState(() {
                             inputText = text;
                           });
-                          model.CreditCardNumberValidation;
+                          model.changeCreditCard(text.replaceAll(" ", ""));
                         },
-                        errorMessage: model.error(model.cardNumberKey),
+                        errorMessage: model.creditCardError,
                         inputFormatters: [
                           MaskedTextInputFormatter(
                             mask: 'xxxx xxxx xxxx xxxx',
@@ -67,8 +68,8 @@ class _NewCreditCardViewState extends State<NewCreditCardView> {
                         title: 'Due date',
                         textType: TextInputType.number,
                         isPassword: false,
-                        onChange: model.CreditCardDueDateValidation,
-                        errorMessage: model.error(model.cardDueDateKey),
+                        onChange: model.changeDueDate,
+                        errorMessage: model.dueDateError,
                         inputFormatters: [
                           MaskedTextInputFormatter(
                             mask: 'xx/xx',
@@ -81,12 +82,29 @@ class _NewCreditCardViewState extends State<NewCreditCardView> {
                         title: 'CVV',
                         textType: TextInputType.number,
                         isPassword: false,
-                        onChange: model.CreditCardCvvValidation,
-                        errorMessage: model.error(model.cardCvvKey),                   
+                        onChange: model.changeCvv,
+                        errorMessage: model.cvvError,                   
                       ),
                     ],
                   ),
-                )
+                ),
+
+                SubmitButton(text: "Agregar", onPressed: () {
+                  if (model.isValidForm) model.createCard();
+                  else {
+                    final snackBar = SnackBar(
+                      backgroundColor: Colors.redAccent,
+                      content: Text("Verifica los campos"),
+                      action: SnackBarAction(
+                        label: 'Cerrar',
+                        textColor: Colors.white,
+                        onPressed: () {}
+                        )
+                      );
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(snackBar);
+                      }
+                })
               ]
             ),
           ),
