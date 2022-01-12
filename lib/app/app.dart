@@ -9,6 +9,7 @@ import 'package:unuber_mobile/ui/views/forgot_password/forgot_password_view.dart
 import 'package:unuber_mobile/ui/views/home/home_view.dart';
 import 'package:unuber_mobile/ui/views/login/login_view.dart';
 import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
+import 'package:unuber_mobile/ui/views/user/user_view.dart';
 
 /// The class AppSetup is used to define the routes and services to use for the auto-routing functionality
 /// * @Routes is the array of routes to the views of the project
@@ -22,10 +23,11 @@ import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
 /// - LoginValidationService is the service used to validate in real time the user inputs in the login view
 /// - AuthService is the service to get authorization to use the API Gateway
 @StackedApp(routes: [
-  MaterialRoute(page: StartupView, path: '/start', initial: true),
+  MaterialRoute(page: StartupView, path: '/start', initial: false),
   MaterialRoute(page: LoginView, path: '/login'),
   MaterialRoute(page: HomeView, path: '/home'),
-  MaterialRoute(page: ForgotPasswordView, path: '/forgot')
+  MaterialRoute(page: ForgotPasswordView, path: '/forgot'),
+  MaterialRoute(page: UserView, path: '/user', initial: true)
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: DialogService),

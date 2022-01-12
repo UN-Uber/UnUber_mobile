@@ -6,29 +6,28 @@
 
 // ignore_for_file: public_member_api_docs
 
-// Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-// Project imports:
 import '../ui/views/forgot_password/forgot_password_view.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/login/login_view.dart';
 import '../ui/views/startup/startup_view.dart';
+import '../ui/views/user/user_view.dart';
 
 class Routes {
   static const String startupView = '/start';
   static const String loginView = '/login';
   static const String homeView = '/home';
   static const String forgotPasswordView = '/forgot';
+  static const String userView = '/user';
   static const all = <String>{
     startupView,
     loginView,
     homeView,
     forgotPasswordView,
+    userView,
   };
 }
 
@@ -40,6 +39,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.forgotPasswordView, page: ForgotPasswordView),
+    RouteDef(Routes.userView, page: UserView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -65,6 +65,12 @@ class StackedRouter extends RouterBase {
     ForgotPasswordView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ForgotPasswordView(),
+        settings: data,
+      );
+    },
+    UserView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const UserView(),
         settings: data,
       );
     },
