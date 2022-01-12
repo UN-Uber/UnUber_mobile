@@ -12,9 +12,7 @@ Future <ServerResponseModel> editCardInfo(String token,{
 
   const String mutation = r'''
     mutation Mutation($idCard: Int!, $card: CreditCardInput!) {
-      updateCard(idCard: $idCard, card: $card){
-        String
-      }
+      updateCard(idCard: $idCard, card: $card)
     }
   ''';
 

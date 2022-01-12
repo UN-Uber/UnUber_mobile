@@ -87,6 +87,11 @@ class _CreditCardsListViewState extends State<CreditCardsListView> {
     );
   }
 
+  /// The method displayFormatCardNumber format the credit card as follows
+  /// XXXX XXXX XXXX XXXX
+  /// - @Param int number is the credit card number
+  /// - Return String with the previous format
+  /// 
   String displayFormatCardNumber(int number){
     String cardNumber = number.toString();
     String formated = "";

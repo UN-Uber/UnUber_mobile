@@ -103,7 +103,6 @@ class _CreditCardsInfoViewState extends State<CreditCardInfo>{
 
                       TextButton.icon(
                         onPressed: () {
-                          print("Eliminar");
                           model.deleteCard(idCard: widget.creditCard.idCard!);
                         },
                         icon: Icon(
