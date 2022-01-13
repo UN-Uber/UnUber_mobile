@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:stacked/stacked.dart';
-import 'package:unuber_mobile/ui/views/credit_card/credit_card_icon.dart';
 
 // Project imports:
+import 'package:unuber_mobile/ui/views/credit_card/credit_card_icon.dart';
 import 'package:unuber_mobile/ui/views/credit_card/new_credit_card/new_credit_card_viewmodel.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/entry_field.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/submit_button.dart';

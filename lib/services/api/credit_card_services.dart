@@ -1,17 +1,18 @@
-// Package imports:
-import 'package:shared_preferences/shared_preferences.dart';
-
 // Project imports:
+import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/services/api/errors/api_errors.dart';
 import 'package:unuber_mobile/services/api/qraphql/mutations/credit_cards/create_credit_card.dart';
 import 'package:unuber_mobile/services/api/qraphql/mutations/credit_cards/delete_credit_card.dart';
 import 'package:unuber_mobile/services/api/qraphql/mutations/credit_cards/edit_credit_card.dart';
 import 'package:unuber_mobile/services/api/qraphql/queries/credit_cards/credit_cards_list.dart';
+import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dart';
 
 class CreditCardService {
 
   String token = "";
+
+  final SecureStorageService _secureStorageService = locator<SecureStorageService>();
 
   Future <ServerResponseModel> createCreditCard ({
     required int idClient, required String cardNumber, required String dueDate, required int cvv
@@ -75,7 +76,6 @@ class CreditCardService {
   }
 
   _getAccessToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    token =  prefs.getString("authToken") ?? "";
+    token = await _secureStorageService.getValue(key: 'authToken') ?? "";
   }
 }
