@@ -11,17 +11,22 @@ class LoginValidationService with Validators {
   String _telephoneError= ' ';
   /// Is the message to display when the password is invalid
   String _passwordError= ' ';
+  /// Is the message to display when the confirm password is invalid
+  String _confirmPasswordError= ' ';
   /// Is the valid email to be send
   String validEmail= '';
   /// Is the valid telephone to be send
   String validTelephone= '';
   /// Is the valid password to be send
   String validPassword= '';
+  /// Is the valid confirm password to be send
+  String validConfirmPassword= '';
 
   // Error messages getters
   String get emailError => this._emailError;
   String get telephoneError => this._telephoneError;
   String get passwordError => this._passwordError;
+  String get confirmPasswordError => this._confirmPasswordError;
 
   /// The method validateEmail is used to check if the given string is a valid email
   /// - @Param email is the string to be checked
@@ -59,7 +64,7 @@ class LoginValidationService with Validators {
     }
   }
 
-  /// The method validatePassword is used to check if the given string is a valid password
+  /// The method validatePasswordLogin is used to check if the given string is a valid password
   /// - @Param password is the string to be checked
   /// - return true if the given password is valid, false other way
   bool validatePassword(String password) {
@@ -77,10 +82,21 @@ class LoginValidationService with Validators {
     }
   }
 
-  /// The method validateForm is used to check if the valid given values
+  /// The method validateForm is used to check if the given values are valid
   /// - return true if all the values are valid, false other way
   bool validateForm(){
     if (isTelephone) return _telephoneError.isEmpty && _passwordError.isEmpty;
     else return _emailError.isEmpty && _passwordError.isEmpty;
+  }
+
+  /// The method resetService is used to reset all the service attributes
+  void resetService(){
+    this.isTelephone= false;
+    this.validEmail='';
+    this.validTelephone='';
+    this.validPassword='';
+    this._emailError=' ';
+    this._telephoneError=' ';
+    this._passwordError=' ';
   }
 }

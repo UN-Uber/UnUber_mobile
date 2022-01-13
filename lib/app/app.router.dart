@@ -19,6 +19,7 @@ import '../ui/views/credit_card/new_credit_card/new_credit_card_view.dart';
 import '../ui/views/forgot_password/forgot_password_view.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/login/login_view.dart';
+import '../ui/views/signup/signup_view.dart';
 import '../ui/views/startup/startup_view.dart';
 
 class Routes {
@@ -28,6 +29,7 @@ class Routes {
   static const String forgotPasswordView = '/forgot';
   static const String newCreditCardView = '/new-credit-card';
   static const String creditCardsListView = '/my-cards';
+  static const String signupView = '/signup';
   static const all = <String>{
     startupView,
     loginView,
@@ -35,6 +37,7 @@ class Routes {
     forgotPasswordView,
     newCreditCardView,
     creditCardsListView,
+    signupView,
   };
 }
 
@@ -48,6 +51,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.forgotPasswordView, page: ForgotPasswordView),
     RouteDef(Routes.newCreditCardView, page: NewCreditCardView),
     RouteDef(Routes.creditCardsListView, page: CreditCardsListView),
+    RouteDef(Routes.signupView, page: SignupView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -85,6 +89,12 @@ class StackedRouter extends RouterBase {
     CreditCardsListView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const CreditCardsListView(),
+        settings: data,
+      );
+    },
+    SignupView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SignupView(),
         settings: data,
       );
     },

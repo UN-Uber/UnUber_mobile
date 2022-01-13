@@ -6,12 +6,15 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:unuber_mobile/services/api/auth_services.dart';
 import 'package:unuber_mobile/services/api/credit_card_services.dart';
 import 'package:unuber_mobile/services/validations/credit_card_validation_service.dart';
-import 'package:unuber_mobile/services/validations/login_validation_service.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_list/credit_card_list_view.dart';
 import 'package:unuber_mobile/ui/views/credit_card/new_credit_card/new_credit_card_view.dart';
+import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dart';
+import 'package:unuber_mobile/services/validations/login_validation_service.dart';
+import 'package:unuber_mobile/services/validations/signup_validation_service.dart';
 import 'package:unuber_mobile/ui/views/forgot_password/forgot_password_view.dart';
 import 'package:unuber_mobile/ui/views/home/home_view.dart';
 import 'package:unuber_mobile/ui/views/login/login_view.dart';
+import 'package:unuber_mobile/ui/views/signup/signup_view.dart';
 import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
 
 /// The class AppSetup is used to define the routes and services to use for the auto-routing functionality
@@ -33,13 +36,17 @@ import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
   MaterialRoute(page: HomeView, path: '/home'),
   MaterialRoute(page: ForgotPasswordView, path: '/forgot'),
   MaterialRoute(page: NewCreditCardView, path: '/new-credit-card'),
-  MaterialRoute(page: CreditCardsListView, path: '/my-cards')
+  MaterialRoute(page: CreditCardsListView, path: '/my-cards'),
+  MaterialRoute(page: SignupView, path: '/signup')
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: DialogService),
   LazySingleton(classType: LoginValidationService),
   LazySingleton(classType: CreditCardValidationService),
   LazySingleton(classType: AuthService),
-  LazySingleton(classType: CreditCardService)
+  LazySingleton(classType: CreditCardService),
+  LazySingleton(classType: SignupValidationService),
+  LazySingleton(classType: SecureStorageService),
+  LazySingleton(classType: AuthService)
 ])
 class AppSetup {}
