@@ -6,14 +6,12 @@
 
 // ignore_for_file: public_member_api_docs
 
-// Flutter imports:
 import 'package:flutter/material.dart';
-
-// Package imports:
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-// Project imports:
+import '../ui/views/credit_card/credit_card_list/credit_card_list_view.dart';
+import '../ui/views/credit_card/new_credit_card/new_credit_card_view.dart';
 import '../ui/views/forgot_password/forgot_password_view.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/login/login_view.dart';
@@ -25,12 +23,16 @@ class Routes {
   static const String loginView = '/login';
   static const String homeView = '/home';
   static const String forgotPasswordView = '/forgot';
+  static const String newCreditCardView = '/new-credit-card';
+  static const String creditCardsListView = '/my-cards';
   static const String signupView = '/signup';
   static const all = <String>{
     startupView,
     loginView,
     homeView,
     forgotPasswordView,
+    newCreditCardView,
+    creditCardsListView,
     signupView,
   };
 }
@@ -43,6 +45,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.forgotPasswordView, page: ForgotPasswordView),
+    RouteDef(Routes.newCreditCardView, page: NewCreditCardView),
+    RouteDef(Routes.creditCardsListView, page: CreditCardsListView),
     RouteDef(Routes.signupView, page: SignupView),
   ];
   @override
@@ -69,6 +73,18 @@ class StackedRouter extends RouterBase {
     ForgotPasswordView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const ForgotPasswordView(),
+        settings: data,
+      );
+    },
+    NewCreditCardView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const NewCreditCardView(),
+        settings: data,
+      );
+    },
+    CreditCardsListView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const CreditCardsListView(),
         settings: data,
       );
     },

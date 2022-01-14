@@ -1,3 +1,6 @@
+// Package imports:
+import 'package:jwt_decoder/jwt_decoder.dart';
+
 // Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
@@ -32,6 +35,10 @@ class AuthService {
       if (!response.hasError && response.exception == null)
         // Persist the access token for next app start
         await _setAccessToken(response.data['login']['token'] as String);
+        
+        // Persiste the id of the authenticated user for use queries and mutatuions
+        // that require it
+        await _setAuthenticatedUserId(response.data['login']['token'] as String);
     } catch (excep) {
       response = errorResponse(excep);
     }
@@ -69,5 +76,14 @@ class AuthService {
   _setAccessToken(String token) async {
     await _secureStorageService.store(key: 'authToken', value: token);
     print('token in AuthService => ${await _secureStorageService.getValue(key: 'authToken')}');
+  }
+
+  /// The method _setAuthenticatedUserId is used to persist the id of the
+  /// authenticated user from the extrated information from token
+  /// - @Param token is the access token to be decode
+  _setAuthenticatedUserId(String token) async {
+    Map<String, dynamic> tokenInfo = JwtDecoder.decode(token);
+    String id = tokenInfo['id'].toString();
+    await _secureStorageService.store(key: 'userId', value: id);
   }
 }

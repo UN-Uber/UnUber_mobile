@@ -39,6 +39,12 @@ dependencies:
   # Stream capabilities expansion
   rxdart: ^0.26.0
 
+  # Primarily used for handle Date types in a more easier way
+  intl: ^0.17.0
+
+  # Decodes the information within a JWT
+  jwt_decoder: ^2.0.1
+
   # Conditional rendering
   flutter_conditional_rendering: ^2.0.0
 
