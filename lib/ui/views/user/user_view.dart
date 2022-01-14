@@ -10,6 +10,7 @@ import 'package:unuber_mobile/ui/widgets/organisms/navigation_drawer/navigation_
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 import 'package:unuber_mobile/ui/widgets/atoms/bezier_container.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/loading_indicator.dart';
+import 'package:unuber_mobile/ui/widgets/atoms/entry_field.dart';
 
 /// The class HomeView is the view for the home route
 class UserView extends StatelessWidget {
@@ -43,9 +44,28 @@ class UserView extends StatelessWidget {
                       right: -(_screenSize.width * .4),
                       child: BezierContainer(),
                     ),
-                    Column(
-                      children: <Widget>[],
-                    )
+                    Column(children: <Widget>[
+                      TextFormField(
+                        initialValue: "Lol",
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        initialValue: "spotm",
+                      ),
+                      TextFormField(
+                        initialValue: "la suya",
+                      ),
+                      TextFormField(
+                        initialValue: "por si acaso",
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            enabled: false,
+                            filled: true,
+                            fillColor: appColors.fillInput),
+                      ),
+                    ])
                   ],
                 ),
               ),
