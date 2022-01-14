@@ -52,7 +52,6 @@ class NewCreditCardViewModel extends BaseViewModel {
 
       /// TODO: Get the authenticated user id
       ServerResponseModel response = await _creditCardService.createCreditCard(
-        idClient: 57, 
         cardNumber: cardNumber, 
         dueDate: dueDate, 
         cvv: cvv

@@ -30,7 +30,7 @@ class CreditCardListViewModel extends BaseViewModel {
     try{
 
       /// TODO: Get the authenticated user id
-      ServerResponseModel response = await _creditCardService.userCreditCards(idClient: 57);
+      ServerResponseModel response = await _creditCardService.userCreditCards();
       if(!response.hasError){
 
         /// Gets the array of CreditCards from the response data and iterates over it

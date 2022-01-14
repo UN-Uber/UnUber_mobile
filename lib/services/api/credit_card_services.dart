@@ -11,15 +11,19 @@ import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dar
 class CreditCardService {
 
   String token = "";
+  String userId = "";
 
   final SecureStorageService _secureStorageService = locator<SecureStorageService>();
 
   Future <ServerResponseModel> createCreditCard ({
-    required int idClient, required String cardNumber, required String dueDate, required int cvv
+    required String cardNumber, required String dueDate, required int cvv
   }) async {
 
     ServerResponseModel response;
     await _getAccessToken();
+    await _getAuthenticatedUserId();
+
+    int idClient = int.parse(userId);
 
     try{
       response = await createCard(token, idClient: idClient, cardNumber: cardNumber, dueDate: dueDate, cvv: cvv);
@@ -31,9 +35,13 @@ class CreditCardService {
     return response;
   }
 
-  Future <ServerResponseModel> userCreditCards ({required int idClient}) async {
+  Future <ServerResponseModel> userCreditCards () async {
     ServerResponseModel response;
     await _getAccessToken();
+
+    await _getAuthenticatedUserId();
+
+    int idClient = int.parse(userId);
 
     try{
       response = await listUserCreditCards(token, id: idClient);
@@ -46,10 +54,13 @@ class CreditCardService {
   }
 
   Future <ServerResponseModel> updateCreditCard ({
-    required int idCard, required int idClient, required String cardNumber, required String dueDate, required int cvv
+    required int idCard, required String cardNumber, required String dueDate, required int cvv
   }) async {
     ServerResponseModel response;
     await _getAccessToken();
+    await _getAuthenticatedUserId();
+
+    int idClient = int.parse(userId);
 
     try{
       response = await editCardInfo(token, idCard: idCard, idClient: idClient, cardNumber: cardNumber, dueDate: dueDate, cvv: cvv);
@@ -77,5 +88,9 @@ class CreditCardService {
 
   _getAccessToken() async {
     token = await _secureStorageService.getValue(key: 'authToken') ?? "";
+  }
+
+  _getAuthenticatedUserId() async {
+    userId = await _secureStorageService.getValue(key: 'userId') ?? "";
   }
 }
