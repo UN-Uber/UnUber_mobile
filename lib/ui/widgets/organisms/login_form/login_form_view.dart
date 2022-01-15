@@ -37,9 +37,9 @@ class LoginForm extends StatelessWidget {
                     children: <Widget>[
                       MainTitle(
                           text: model.title,
-                          color: appColors.primaryVariant,
+                          color: appColors.primary,
                           fontSize: 30),
-                      SizedBox(height: _screenSize.height * .025),
+                      SizedBox(height: _screenSize.height * .02),
                       Column(children: <Widget>[
                         EntryField(
                             title: model.isTelephone
@@ -57,7 +57,7 @@ class LoginForm extends StatelessWidget {
                           flagListener: model.updateFlag,
                           title: 'Es un número telefonico?',
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: 6),
                         EntryField(
                             title: 'Contraseña',
                             textType: TextInputType.visiblePassword,
@@ -87,7 +87,7 @@ class LoginForm extends StatelessWidget {
                           )
                         )
                       ]),
-                      SizedBox(height: _screenSize.height * .05),
+                      SizedBox(height: _screenSize.height * .04),
                       Column(children: <Widget>[
                         SubmitButton(
                                 text: model.loginButtonText,

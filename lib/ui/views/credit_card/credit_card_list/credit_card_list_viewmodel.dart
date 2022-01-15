@@ -17,7 +17,7 @@ class CreditCardListViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   
   navigateToAddCreditCard() {
-    _navigationService.clearStackAndShow(Routes.newCreditCardView);
+    _navigationService.navigateTo(Routes.newCreditCardView);
   }
 
   /// The method listUserCards is used to stablish a connection with the ApiGateway and

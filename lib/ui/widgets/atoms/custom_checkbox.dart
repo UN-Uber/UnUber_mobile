@@ -5,16 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/main_title.dart';
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
+/// The class CustomCheckbox is a [StatefulWidget] used to place a checkbox widget where needed
 class CustomCheckbox extends StatefulWidget {
+  /// Flag to know if the checkbox starts in checked state
   final bool? isChecked;
+  /// Is the title to display next to the checkbox button
   final String title;
+  /// Is the size of the checkbox
   final double? size;
+  /// Is the size of the icon into the checkbox
   final double? iconSize;
+  /// Is the color of the checkbox when selected
   final Color? selectedColor;
+  /// Is the color of the icon when selected
   final Color? selectedIconColor;
+  /// is the color of the checkbox border
   final Color? borderColor;
+  /// Is the icon to display when checked
   final IconData? checkIcon;
+  /// function to execute when the checkbox change it's state
   final Function(bool) onChange;
+  /// function to update the checked value of the parent widget
   final Function(bool) flagListener;
 
   const CustomCheckbox(

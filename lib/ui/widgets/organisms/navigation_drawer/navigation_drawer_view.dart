@@ -33,6 +33,14 @@ class NavigationDrawerView extends StatelessWidget {
               ListTile(
                 title: Text('Account'),
                 onTap: this.accountTap
+              ),
+              ListTile(
+                title: Text('Billetera'),
+                onTap: model.goToCreditCard,
+              ),
+              ListTile(
+                title: Text('Cerrar Sesión'),
+                onTap: model.logout,
               )
             ]))),
         viewModelBuilder: () => NavigationDrawerViewModel());
