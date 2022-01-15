@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Package imports:
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,7 +13,9 @@ import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dar
 
 /// The class StartupViewModel is the ViewModel for the startup route
 class StartupViewModel extends BaseViewModel {
+  /// Service used to navigate to other routes
   final _navigationService= locator<NavigationService>();
+  /// Service used to encrypt and persist in some data
   final _secureStorageService= locator<SecureStorageService>();
 
   StartupViewModel(){
@@ -23,7 +26,21 @@ class StartupViewModel extends BaseViewModel {
   /// The method _isSessionActive is used to check if the device has a token previously stored
   Future<bool> _isSessionActive() async {
     String? token = await _secureStorageService.getValue(key: 'authToken');
-    return token != null;
+    if (token != null){
+      // token was stored
+      if (!JwtDecoder.isExpired(token)){
+        // token isn't expired
+        return true;
+      }
+      else{
+        // token expired
+        await _secureStorageService.delete(key: 'authKey');
+        await _secureStorageService.delete(key: 'userId');
+        return false;
+      }
+    }
+
+    return false;
   }
 
   /// The method _navigateToLogin is used to clear the widget tree and navigate to the login route

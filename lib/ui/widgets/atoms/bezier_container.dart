@@ -17,19 +17,20 @@ class BezierContainer extends StatelessWidget {
     final _screenSize = MediaQuery.of(context).size;
     return Container(
         child: Transform.rotate(
-            angle: -(pi / 3.5),
+            angle: -(pi / 4.0),
             child: ClipPath(
                 clipper: ClipPainter(),
                 child: Container(
                     height: _screenSize.height * .45,
-                    width: _screenSize.width,
+                    width: _screenSize.width * .8,
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                          appColors.secondary,
-                          appColors.primary
+                          appColors.primary,
+                          appColors.primaryVariant,
+                          appColors.secondary
                         ]))))));
   }
 }

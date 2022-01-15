@@ -38,7 +38,7 @@ class CreditCardInfoViewModel extends BaseViewModel {
   String get cvvNewValue => _creditCardValidationService.validCvv;
 
   navigateToCreditCardList() {
-    _navigationService.clearStackAndShow(Routes.creditCardsListView);
+    _navigationService.navigateTo(Routes.creditCardsListView);
   }
 
   enableEdit(){

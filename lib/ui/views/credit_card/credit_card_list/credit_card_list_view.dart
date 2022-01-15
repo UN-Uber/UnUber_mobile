@@ -6,9 +6,9 @@ import 'package:stacked/stacked.dart';
 
 // Project imports:
 import 'package:unuber_mobile/models/credit_card.dart';
-import 'package:unuber_mobile/ui/views/credit_card/credit_card_utils.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_info/credit_card_info_view.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_list/credit_card_list_viewmodel.dart';
+import 'package:unuber_mobile/ui/views/credit_card/credit_card_utils.dart';
 
 class CreditCardsListView extends StatefulWidget {
   const CreditCardsListView({Key? key}): super(key: key);

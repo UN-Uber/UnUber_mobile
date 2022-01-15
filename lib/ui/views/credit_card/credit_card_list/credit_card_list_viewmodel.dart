@@ -19,7 +19,7 @@ class CreditCardListViewModel extends BaseViewModel {
   final CreditCardDataService _creditCardDataService = locator<CreditCardDataService>();
   
   navigateToAddCreditCard() {
-    _navigationService.clearStackAndShow(Routes.newCreditCardView);
+    _navigationService.navigateTo(Routes.newCreditCardView);
   }
 
   selectedCreditCardInfo(int number, String date, String cvv){
