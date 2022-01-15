@@ -12,6 +12,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../services/api/auth_services.dart';
 import '../services/api/credit_card_services.dart';
+import '../services/api/user_services.dart';
 import '../services/secure_storage/secure_storage_service.dart';
 import '../services/validations/credit_card_validation_service.dart';
 import '../services/validations/login_validation_service.dart';
@@ -33,4 +34,5 @@ void setupLocator({String? environment, EnvironmentFilter? environmentFilter}) {
   locator.registerLazySingleton(() => CreditCardService());
   locator.registerLazySingleton(() => SignupValidationService());
   locator.registerLazySingleton(() => SecureStorageService());
+  locator.registerLazySingleton(() => UserService());
 }

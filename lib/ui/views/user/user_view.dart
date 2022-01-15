@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:unuber_mobile/models/user.dart';
 
 // Project imports:
 import 'package:unuber_mobile/ui/views/user/user_viewmodel.dart';
@@ -13,8 +15,22 @@ import 'package:unuber_mobile/ui/widgets/atoms/loading_indicator.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/entry_field.dart';
 
 /// The class HomeView is the view for the home route
-class UserView extends StatelessWidget {
+
+class UserView extends StatefulWidget {
   const UserView({Key? key}) : super(key: key);
+  @override
+  _UserViewState createState() => _UserViewState();
+}
+
+class _UserViewState extends State<UserView> {
+  UserViewModel userViewModel = new UserViewModel();
+  late Future<User> _user;
+
+  @override
+  void initState() {
+    super.initState();
+    _user = userViewModel.getUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +39,9 @@ class UserView extends StatelessWidget {
         builder: (context, UserViewModel model, child) => SafeArea(
               child: Scaffold(
                 key: model.scaffoldKey,
-                drawer: NavigationDrawerView(),
+                drawer: NavigationDrawerView(
+                  accountTap: () {},
+                ),
                 appBar: AppBar(
                     leading: GestureDetector(
                         onTap: () =>
@@ -37,37 +55,67 @@ class UserView extends StatelessWidget {
                     titleSpacing: 0,
                     backgroundColor: Colors.transparent,
                     elevation: 0),
-                body: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      top: -(_screenSize.height * .225),
-                      right: -(_screenSize.width * .4),
-                      child: BezierContainer(),
-                    ),
-                    Column(children: <Widget>[
-                      TextFormField(
-                        initialValue: "Lol",
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        initialValue: "spotm",
-                      ),
-                      TextFormField(
-                        initialValue: "la suya",
-                      ),
-                      TextFormField(
-                        initialValue: "por si acaso",
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            enabled: false,
-                            filled: true,
-                            fillColor: appColors.fillInput),
-                      ),
-                    ])
-                  ],
-                ),
+                body: FutureBuilder<User>(
+                    future: _user,
+                    builder: (context, snapshut) {
+                      if (snapshut.hasData) {
+                        User? user = snapshut.data;
+                        return Stack(
+                          children: <Widget>[
+                            Positioned(
+                              top: -(_screenSize.height * .225),
+                              right: -(_screenSize.width * .4),
+                              child: BezierContainer(),
+                            ),
+                            Column(children: <Widget>[
+                              EntryField(
+                                initialValue: user!.fName,
+                                textType: TextInputType.text,
+                                onChange: (Value) {},
+                                errorMessage: "",
+                                title: "nombre",
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              EntryField(
+                                initialValue: user.sName,
+                                textType: TextInputType.text,
+                                onChange: (Value) {},
+                                errorMessage: "",
+                                title: "segundo nombre",
+                              ),
+                              EntryField(
+                                initialValue: user.sureName,
+                                textType: TextInputType.text,
+                                onChange: (Value) {},
+                                errorMessage: "",
+                                title: "apellido",
+                              ),
+                              EntryField(
+                                initialValue: user.email,
+                                textType: TextInputType.emailAddress,
+                                onChange: (Value) {},
+                                errorMessage: "",
+                                title: "email",
+                              ),
+                              TextFormField(
+                                initialValue: "por si acaso",
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    enabled: false,
+                                    filled: true,
+                                    fillColor: appColors.fillInput),
+                              ),
+                              ElevatedButton(
+                                  onPressed: () => {model.getUser()},
+                                  child: Text("texto"))
+                            ])
+                          ],
+                        );
+                      }
+                      return LoadingIndicator();
+                    }),
               ),
             ),
         viewModelBuilder: () => UserViewModel());

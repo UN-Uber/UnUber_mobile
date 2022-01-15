@@ -5,6 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 // Project imports:
 import 'package:unuber_mobile/services/api/auth_services.dart';
 import 'package:unuber_mobile/services/api/credit_card_services.dart';
+import 'package:unuber_mobile/services/api/user_services.dart';
 import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dart';
 import 'package:unuber_mobile/services/validations/credit_card_validation_service.dart';
 import 'package:unuber_mobile/services/validations/login_validation_service.dart';
@@ -32,11 +33,11 @@ import 'package:unuber_mobile/ui/views/user/user_view.dart';
 /// - LoginValidationService is the service used to validate in real time the user inputs in the login view
 /// - AuthService is the service to get authorization to use the API Gateway
 @StackedApp(routes: [
-  MaterialRoute(page: StartupView, path: '/start', initial: false),
+  MaterialRoute(page: StartupView, path: '/start', initial: true),
   MaterialRoute(page: LoginView, path: '/login'),
   MaterialRoute(page: HomeView, path: '/home'),
   MaterialRoute(page: ForgotPasswordView, path: '/forgot'),
-  MaterialRoute(page: UserView, path: '/user', initial: true),
+  MaterialRoute(page: UserView, path: '/user'),
   MaterialRoute(page: NewCreditCardView, path: '/new-credit-card'),
   MaterialRoute(page: CreditCardsListView, path: '/my-cards'),
   MaterialRoute(page: SignupView, path: '/signup')
@@ -48,6 +49,7 @@ import 'package:unuber_mobile/ui/views/user/user_view.dart';
   LazySingleton(classType: AuthService),
   LazySingleton(classType: CreditCardService),
   LazySingleton(classType: SignupValidationService),
-  LazySingleton(classType: SecureStorageService)
+  LazySingleton(classType: SecureStorageService),
+  LazySingleton(classType: UserService),
 ])
 class AppSetup {}

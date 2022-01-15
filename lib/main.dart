@@ -35,6 +35,6 @@ class MyApp extends StatelessWidget {
                 .copyWith(secondary: appColors.secondary)),
         navigatorKey: StackedService.navigatorKey,
         onGenerateRoute: StackedRouter().onGenerateRoute,
-        initialRoute: Routes.userView);
+        initialRoute: Routes.startupView);
   }
 }

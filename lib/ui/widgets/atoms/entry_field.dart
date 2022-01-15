@@ -42,7 +42,7 @@ class EntryField extends StatelessWidget {
   /// Allow add format to the text in the text field
   final List<TextInputFormatter> inputFormatters;
 
-  final String InitialValue;
+  final String initialValue;
 
   final bool isEnabled;
 
@@ -56,7 +56,7 @@ class EntryField extends StatelessWidget {
       this.isPassword = false,
       this.suffixIcon,
       this.prefixIcon,
-      this.InitialValue = "",
+      this.initialValue = "",
       this.isEnabled = true,
       required this.textType,
       required this.onChange,
@@ -78,10 +78,10 @@ class EntryField extends StatelessWidget {
                     fontSize: 15,
                     color: appColors.primaryVariant),
               ),
-              TextField(
+              TextFormField(
                   onChanged: this.onChange,
                   obscureText: this.isPassword,
-                  controller: TextEditingController(text: this.InitialValue),
+                  initialValue: this.initialValue,
                   keyboardType: this.textType,
                   inputFormatters: this.inputFormatters,
                   decoration: InputDecoration(
