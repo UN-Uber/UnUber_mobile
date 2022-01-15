@@ -8,24 +8,37 @@ import 'package:unuber_mobile/utils/colors.dart' as appColors;
 class EntryField extends StatelessWidget {
   /// Title for the component
   final String title;
+
   /// Message to disply when an error occurs
   final String? errorMessage;
+
   /// Hint for the user
   final String? hintText;
+
   /// Suffix text to place in the text field after user input
   final String? suffixText;
+
   /// Prefix text to place in the text field before user input
   final String? prefixText;
+
   /// Flag to censor the content of the text field
   final bool isPassword;
+
   /// Icon to place in the text field after user input
   final IconData? suffixIcon;
+
   /// Icon to place in the text field before user input
   final IconData? prefixIcon;
+
   /// Select the type of text to adapt the user keyboard correctly
   final TextInputType textType;
+
   /// Function to execute when the text field suffers a change
   final Function(String) onChange;
+
+  final String InitialValue;
+
+  final bool isEnabled;
 
   const EntryField(
       {Key? key,
@@ -37,6 +50,8 @@ class EntryField extends StatelessWidget {
       this.isPassword = false,
       this.suffixIcon,
       this.prefixIcon,
+      this.InitialValue = "",
+      this.isEnabled = true,
       required this.textType,
       required this.onChange})
       : super(key: key);
@@ -59,6 +74,7 @@ class EntryField extends StatelessWidget {
               TextField(
                   onChanged: this.onChange,
                   obscureText: this.isPassword,
+                  controller: TextEditingController(text: this.InitialValue),
                   keyboardType: this.textType,
                   decoration: InputDecoration(
                       errorText: this.errorMessage,
@@ -73,7 +89,8 @@ class EntryField extends StatelessWidget {
                           ? Icon(this.prefixIcon)
                           : null,
                       suffixText: this.suffixText,
-                      prefixText: this.prefixText))
+                      prefixText: this.prefixText,
+                      enabled: this.isEnabled))
             ]));
   }
 }
