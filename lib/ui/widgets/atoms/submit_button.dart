@@ -31,8 +31,9 @@ class SubmitButton extends StatelessWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: [
-              appColors.secondary,
-              appColors.primary
+              appColors.primary,
+              appColors.primaryVariant,
+              appColors.secondary
             ]
           ),
           borderRadius: BorderRadius.all(

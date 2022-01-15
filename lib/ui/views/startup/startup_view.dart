@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:stacked/stacked.dart';
 
 // Project imports:
@@ -20,7 +21,14 @@ class StartupView extends StatelessWidget {
           child: Scaffold(
             body: Stack(
               children: <Widget>[
-                Column()
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: SvgPicture.asset('assets/vectors/profile_iconRecurso 2.svg', width: 300, height: 300)
+                    )
+                  ]
+                )
               ],
             )
           )

@@ -8,6 +8,7 @@ import 'package:unuber_mobile/app/app.router.dart';
 import 'package:unuber_mobile/models/dialog_type.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/services/api/auth_services.dart';
+import 'package:unuber_mobile/services/api/user_crud_service.dart';
 import 'package:unuber_mobile/services/validations/login_validation_service.dart';
 import 'package:unuber_mobile/utils/constraints.dart' as constraints;
 import 'package:unuber_mobile/utils/logger.dart';
@@ -18,6 +19,7 @@ class LoginViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final _loginValidationService = locator<LoginValidationService>();
   final _authService = locator<AuthService>();
+  final _userCRUDService = locator<UserCRUDService>();
 
   /// flag to control the loading times
   bool _isLoading = false;
@@ -31,11 +33,13 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  /// The method updateTelephone is used to send the user input to the login validation service
   updateTelephone(bool value) {
     _loginValidationService.isTelephone = value;
     notifyListeners();
   }
 
+  /// The method navigateYoHome is used to clear the widget stack and go to the home view
   navigateToHome() {
     _navigationService.clearStackAndShow(Routes.homeView);
   }
@@ -47,14 +51,19 @@ class LoginViewModel extends BaseViewModel {
     String password = _loginValidationService.validPassword;
 
     try {
+      // Try to authorice in the api gateway and get an auth token
       _isLoading = true;
       ServerResponseModel response = await _authService.getToken(
           email: email, telephone: telephone, password: password);
       _isLoading = false;
 
-      if (!response.hasError)
+      if (!response.hasError){
+        // query succesfull
         navigateToHome();
+        _userCRUDService.setMinInfo();
+      }
       else {
+        // query has an error, so check for status code and do something
         switch (response.statusCode) {
           case 400:
             _showBasicDialog(description: constraints.CONNECTION_ERROR_MESSAGE);
@@ -76,6 +85,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   /// The method _showBasicDialog display an error message to the user
+  /// - @Param description is the string to use as the dialog description
   Future _showBasicDialog({required String description}) async {
     await _dialogService.showCustomDialog(
         variant: DialogType.SingleMessage,
