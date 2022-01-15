@@ -53,7 +53,7 @@ class _CreditCardsInfoViewState extends State<CreditCardInfo>{
                           model.changeCreditCard(text.replaceAll(" ", ""));
                         },
                         errorMessage: model.creditCardError,
-                        isEnabled: model.editEnable,
+                        isEnabled: false,
                         prefixIcon: _creditCardIcon.creditCardConditionalIcon(
                           widget.creditCard.creditCardNumber.toString()
                         ),
@@ -80,7 +80,7 @@ class _CreditCardsInfoViewState extends State<CreditCardInfo>{
                         ],
                         onChange: model.changeCvv,
                         errorMessage: model.cvvError,
-                        isEnabled: model.editEnable,
+                        isEnabled: false,
                       ),
                     ],
                   ),
@@ -140,7 +140,7 @@ class _CreditCardsInfoViewState extends State<CreditCardInfo>{
                       visible: model.editEnable,
                       child: SubmitButton(
                         onPressed: () {
-                          if(model.dataAreChange()){
+                          if(model.dataAreChange() && model.isValidForm){
                             model.updateCard(idCard: widget.creditCard.idCard!);
                             if(model.updated){
                               final snackBar = SnackBar(
@@ -150,6 +150,10 @@ class _CreditCardsInfoViewState extends State<CreditCardInfo>{
                                 label: 'Cerrar', 
                                 onPressed: () {}));
                               ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              Future.delayed(
+                                const Duration(seconds: 3),
+                                model.navigateToCreditCardList()
+                              );
                             }
                           }
                           else{

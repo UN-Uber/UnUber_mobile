@@ -33,9 +33,11 @@ class CreditCardInfoViewModel extends BaseViewModel {
   String get selectedCreditCardDueDate => _creditCardDataService.selectedCreditCardDueDate;
   String get selectedCreditCardCvv => _creditCardDataService.selectedCreditCardCvv;
 
-  String get creditCardNewValue => _creditCardValidationService.validCreditCard;
+  //String get creditCardNewValue => _creditCardValidationService.validCreditCard;
   String get dueDateNewValue => _creditCardValidationService.validDueDate;
-  String get cvvNewValue => _creditCardValidationService.validCvv;
+  //String get cvvNewValue => _creditCardValidationService.validCvv;
+
+  bool get isValidForm => _creditCardValidationService.validateForm();
 
   navigateToCreditCardList() {
     _navigationService.navigateTo(Routes.creditCardsListView);
@@ -61,27 +63,23 @@ class CreditCardInfoViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  bool dataAreChange(){
-    print("--");
-    print(selectedCreditCardCvv);
-    print(cvvNewValue);
-    print(selectedCreditCardCvv.compareTo(cvvNewValue));
-    print(cvvNewValue.isNotEmpty);
-    print("--");
 
-    if((selectedCreditCardNumber.compareTo(creditCardNewValue) != 0 && creditCardNewValue.isNotEmpty ) || 
-       (selectedCreditCardDueDate.compareTo(dueDateNewValue) != 0 && dueDateNewValue.isNotEmpty) ||
-       (selectedCreditCardCvv.compareTo(cvvNewValue) != 0 && cvvNewValue.isNotEmpty)){
-        
-        return true;
+  /// the method dataAreChange verifies if the card información had been modified in the
+  /// inputs, only verifies the due date because this is the only value that can be updated.
+  /// 
+  /// - return true if the data had been changed and false if not.
+  /// 
+  bool dataAreChange(){
+    if(selectedCreditCardDueDate.compareTo(dueDateNewValue) != 0 && dueDateNewValue.isNotEmpty){        
+      return true;
     }
     return false;
   }
 
   Future updateCard({required int idCard}) async {
-    String cardNumber = _creditCardValidationService.validCreditCard.replaceAll(" ", "");
+    String cardNumber = selectedCreditCardNumber;
     String dueDate = _creditCardValidationService.validDueDate;
-    int cvv = int.parse(_creditCardValidationService.validCvv);
+    int cvv = int.parse(selectedCreditCardCvv);
   
     try{
       ServerResponseModel response = await _creditCardService.updateCreditCard(
