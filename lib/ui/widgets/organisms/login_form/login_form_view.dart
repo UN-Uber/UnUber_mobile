@@ -29,7 +29,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
     return ViewModelBuilder.reactive(
-        builder: (BuildContext context, LoginFormViewModel model, child) =>
+        builder: (context, LoginFormViewModel model, child) =>
             WillPopScope(
                 onWillPop: null,
                 child: Column(
@@ -68,11 +68,24 @@ class LoginForm extends StatelessWidget {
                             onTap: model.navigateToForgotPassword,
                             child: Container(
                                 padding: EdgeInsets.symmetric(vertical: 15),
-                                alignment: Alignment.centerLeft,
+                                alignment: Alignment.center,
                                 child: Text('Olvidaste la contraseña?',
                                     style: TextStyle(
                                         fontSize: 14,
-                                        color: appColors.primary))))
+                                        color: appColors.primary)))),
+                        GestureDetector(
+                          onTap: model.navigateToSignup,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            alignment: Alignment.center,
+                            child: Text('¿No tienes cuenta?, crea una aquí',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: appColors.primary
+                              )
+                            )
+                          )
+                        )
                       ]),
                       SizedBox(height: _screenSize.height * .05),
                       Column(children: <Widget>[

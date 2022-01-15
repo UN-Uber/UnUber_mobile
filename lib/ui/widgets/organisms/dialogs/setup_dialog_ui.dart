@@ -14,13 +14,13 @@ void setupDialogUI() {
 
   final builders = {
     DialogType.SingleMessage: (context, sheetRequest, completer) => Dialog(
-        child: _CustomDialogUI(request: sheetRequest, completer: completer))
+        child: _customDialogUI(request: sheetRequest, completer: completer))
   };
 
   _dialogService.registerCustomDialogBuilders(builders);
 }
 
-Widget _CustomDialogUI(
+Widget _customDialogUI(
     {required DialogRequest request,
     required Function(DialogResponse) completer}) {
   var dialogType = request.variant as DialogType;
