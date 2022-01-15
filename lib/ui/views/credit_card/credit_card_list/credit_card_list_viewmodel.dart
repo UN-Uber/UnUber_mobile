@@ -8,6 +8,7 @@ import 'package:unuber_mobile/app/app.router.dart';
 import 'package:unuber_mobile/models/credit_card.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/services/api/credit_card_services.dart';
+import 'package:unuber_mobile/services/data_transfer/credit_card_data_service.dart';
 import 'package:unuber_mobile/utils/constraints.dart' as constraints;
 import 'package:unuber_mobile/utils/logger.dart';
 
@@ -15,9 +16,14 @@ class CreditCardListViewModel extends BaseViewModel {
 
   List<CreditCard> cards = [];
   final _navigationService = locator<NavigationService>();
+  final CreditCardDataService _creditCardDataService = locator<CreditCardDataService>();
   
   navigateToAddCreditCard() {
     _navigationService.clearStackAndShow(Routes.newCreditCardView);
+  }
+
+  selectedCreditCardInfo(int number, String date, String cvv){
+    _creditCardDataService.selectedCreditCardInfo(number, date, cvv);
   }
 
   /// The method listUserCards is used to stablish a connection with the ApiGateway and

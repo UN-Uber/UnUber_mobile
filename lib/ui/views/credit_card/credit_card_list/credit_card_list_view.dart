@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 
 // Project imports:
 import 'package:unuber_mobile/models/credit_card.dart';
-import 'package:unuber_mobile/ui/views/credit_card/credit_card_icon.dart';
+import 'package:unuber_mobile/ui/views/credit_card/credit_card_utils.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_info/credit_card_info_view.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_list/credit_card_list_viewmodel.dart';
 
@@ -67,6 +67,7 @@ class _CreditCardsListViewState extends State<CreditCardsListView> {
                       onTap: () {
                         CreditCard card;
                         card = snapshot.data!.elementAt(i);
+                        model.selectedCreditCardInfo(card.creditCardNumber, card.dueDate, card.cvv);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

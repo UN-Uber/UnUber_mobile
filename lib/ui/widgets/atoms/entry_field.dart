@@ -9,28 +9,42 @@ import 'package:unuber_mobile/utils/colors.dart' as appColors;
 class EntryField extends StatelessWidget {
   /// Title for the component
   final String title;
+
   /// Message to disply when an error occurs
   final String? errorMessage;
+
   /// Hint for the user
   final String? hintText;
+
   /// Suffix text to place in the text field after user input
   final String? suffixText;
+  
   /// Prefix text to place in the text field before user input
   final String? prefixText;
+
   /// Flag to censor the content of the text field
   final bool isPassword;
+
   /// Icon to place in the text field after user input
   /// Changed to Widget becacuse define it only as an Icon limit the decoration posibilites
   final Widget? suffixIcon;
+
   /// Icon to place in the text field before user input
   /// Changed to Widget becacuse define it only as an Icon limit the decoration posibilites
   final Widget? prefixIcon;
+
   /// Select the type of text to adapt the user keyboard correctly
   final TextInputType textType;
+
   /// Function to execute when the text field suffers a change
   final Function(String) onChange;
+
   /// Allow add format to the text in the text field
   final List<TextInputFormatter> inputFormatters;
+
+  final String initialValue;
+
+  final bool isEnabled;
 
   const EntryField(
       {Key? key,
@@ -42,6 +56,8 @@ class EntryField extends StatelessWidget {
       this.isPassword = false,
       this.suffixIcon,
       this.prefixIcon,
+      this.initialValue = "",
+      this.isEnabled = true,
       required this.textType,
       required this.onChange,
       this.inputFormatters = const []})
@@ -62,9 +78,10 @@ class EntryField extends StatelessWidget {
                     fontSize: 15,
                     color: appColors.primaryVariant),
               ),
-              TextField(
+              TextFormField(
                   onChanged: this.onChange,
                   obscureText: this.isPassword,
+                  initialValue: this.initialValue,
                   keyboardType: this.textType,
                   inputFormatters: this.inputFormatters,
                   decoration: InputDecoration(
@@ -80,7 +97,8 @@ class EntryField extends StatelessWidget {
                           ? (this.prefixIcon)
                           : null,
                       suffixText: this.suffixText,
-                      prefixText: this.prefixText))
+                      prefixText: this.prefixText,
+                      enabled: this.isEnabled))
             ]));
   }
 }
