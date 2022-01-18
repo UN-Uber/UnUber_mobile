@@ -6,6 +6,7 @@ import 'package:stacked/stacked.dart';
 
 // Project imports:
 import 'package:unuber_mobile/ui/views/home/home_viewmodel.dart';
+import 'package:unuber_mobile/ui/widgets/atoms/custom_divider.dart';
 import 'package:unuber_mobile/ui/widgets/organisms/navigation_drawer/navigation_drawer_view.dart';
 import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
@@ -20,7 +21,7 @@ class HomeView extends StatelessWidget {
               child: Scaffold(
                 key: model.scaffoldKey,
                 drawer: NavigationDrawerView(
-                  accountTap: (){},
+                  accountTap: () {},
                 ),
                 appBar: AppBar(
                     leading: GestureDetector(
@@ -35,7 +36,30 @@ class HomeView extends StatelessWidget {
                     titleSpacing: 0,
                     backgroundColor: Colors.transparent,
                     elevation: 0),
-                body: Container(),
+                body: Column(children: <Widget>[
+                  SizedBox(height: 30),
+                  Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      height: 80,
+                      decoration: BoxDecoration(
+                          color: appColors.primary,
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: GestureDetector(
+                        onTap: model.navigateToSetPoints,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(Icons.directions_car_rounded,
+                                  color: appColors.secondary, size: 75),
+                              Text('Iniciar un nuevo viaje!',
+                                  style: TextStyle(
+                                      color: appColors.secondary, fontSize: 36))
+                            ]),
+                      )),
+                  SizedBox(height: 25),
+                  CustomDivider(text: 'Destinos favoritos'),
+                  SizedBox(height: 25)
+                ]),
               ),
             ),
         viewModelBuilder: () => HomeViewModel());

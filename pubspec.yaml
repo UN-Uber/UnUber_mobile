@@ -45,6 +45,9 @@ dependencies:
   # Decodes the information within a JWT
   jwt_decoder: ^2.0.1
 
+  # SVG Rendering
+  flutter_svg: ^1.0.1
+
   # Conditional rendering
   flutter_conditional_rendering: ^2.0.0
 
@@ -72,6 +75,15 @@ dev_dependencies:
   # Import pretty logger
   logger: ^1.1.0
 
+  # Flutter launcher icons
+  flutter_launcher_icons: ^0.9.2
+
+# Setting all the assets for launcher icons
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/launcher_icon.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -86,6 +98,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/vectors/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

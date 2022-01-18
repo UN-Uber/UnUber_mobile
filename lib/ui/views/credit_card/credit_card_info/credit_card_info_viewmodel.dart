@@ -19,7 +19,7 @@ class CreditCardInfoViewModel extends BaseViewModel {
   final DialogService _dialogService = locator<DialogService>();
 
   navigateToCreditCardList() {
-    _navigationService.clearStackAndShow(Routes.creditCardsListView);
+    _navigationService.navigateTo(Routes.creditCardsListView);
   }
 
   Future deleteCard({required int idCard}) async {

@@ -10,6 +10,7 @@ import 'package:unuber_mobile/ui/widgets/atoms/bezier_container.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/loading_indicator.dart';
 import 'package:unuber_mobile/ui/widgets/organisms/signup_form/signup_form_view.dart';
 
+/// The class SignupView is the view for the signup route
 class SignupView extends StatelessWidget {
   const SignupView({Key? key}) : super(key: key);
 
