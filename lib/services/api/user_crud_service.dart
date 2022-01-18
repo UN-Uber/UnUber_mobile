@@ -14,26 +14,27 @@ class UserCRUDService {
   final _secureStorageService = locator<SecureStorageService>();
 
   /// Is the name of the user logged in the app
-  late String userName;
+  String userName = "";
+
   /// Is the email of the user logged in the app
-  late String email;
+  String email = "";
 
   /// The method getUserInfo is used to query the api gateway for the user id info stored in the auth token
   /// - return a ServerResponseModel from the api gateway
   Future<ServerResponseModel> getUserInfo() async {
     late ServerResponseModel response;
 
-    try{
+    try {
       // Get auth token and user id
       String? token = await _secureStorageService.getValue(key: 'authToken');
-      int? id = int.parse(await _secureStorageService.getValue(key: 'userId')??);
+      int? id =
+          int.parse(await _secureStorageService.getValue(key: 'userId') ?? );
 
-      if (token != null){
+      if (token != null) {
         // token exists
         response = await getUserById(id: id, token: token);
       }
-    }
-    catch(excep){
+    } catch (excep) {
       response = errorResponse(excep);
     }
 
@@ -44,12 +45,12 @@ class UserCRUDService {
   Future setMinInfo() async {
     final response = await getUserInfo();
 
-    if (response.data != null){
+    if (response.data != null) {
       // Succesfull query to the api gateway
-      this.userName = '${response.data['getClient']['fName']} ${response.data['getClient']['sureName']}';
+      this.userName =
+          '${response.data['getClient']['fName']} ${response.data['getClient']['sureName']}';
       this.email = response.data['getClient']['email'];
-    }
-    else{
+    } else {
       // Error in query
       this.userName = 'Bienvenido Usuario!';
       this.email = 'something@something.com';

@@ -1,7 +1,7 @@
 class User {
   int? idClient;
   String fName = "";
-  String sName = "";
+  String? sName = "";
   String sureName = "";
   int active = 0;
   String email = "";

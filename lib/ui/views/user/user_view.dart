@@ -79,7 +79,8 @@ class _UserViewState extends State<UserView> {
                                 height: 10,
                               ),
                               EntryField(
-                                initialValue: user.sName,
+                                initialValue:
+                                    user.sName != null ? user.sName! : "",
                                 textType: TextInputType.text,
                                 onChange: (Value) {},
                                 errorMessage: "",

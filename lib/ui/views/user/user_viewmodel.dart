@@ -6,7 +6,6 @@ import 'package:stacked_services/stacked_services.dart';
 // Package imports:
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/user.dart';
-import 'package:unuber_mobile/services/api/user_services.dart';
 import 'package:unuber_mobile/services/validations/login_validation_service.dart';
 import 'package:unuber_mobile/app/app.router.dart';
 import 'package:unuber_mobile/models/dialog_type.dart';
@@ -14,6 +13,7 @@ import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/utils/constraints.dart' as constraints;
 import 'package:unuber_mobile/utils/logger.dart';
 import 'package:unuber_mobile/services/api/auth_services.dart';
+import 'package:unuber_mobile/services/api/user_crud_service.dart';
 
 /// The class HomeViewModel is the ViewModel for the home route
 class UserViewModel extends BaseViewModel {
@@ -21,7 +21,7 @@ class UserViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
   final _loginValidationService = locator<LoginValidationService>();
-  final _userService = locator<UserService>();
+  final _userService = locator<UserCRUDService>();
 
   /// flag to control the loading times
   bool _isLoading = false;
@@ -54,7 +54,8 @@ class UserViewModel extends BaseViewModel {
 
     try {
       _isLoading = true;
-      ServerResponseModel response = await _userService.getInfoFromUser();
+      ServerResponseModel response = await _userService.getUserInfo();
+      print(response.data);
       _isLoading = false;
       if (!response.hasError) {
         user = new User(
