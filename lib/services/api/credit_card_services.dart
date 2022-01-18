@@ -87,10 +87,10 @@ class CreditCardService {
   }
 
   _getAccessToken() async {
-    token = await _secureStorageService.getValue(key: 'authToken') ?? "";
+    token = await _secureStorageService.getStringValue(key: 'authToken') ?? "";
   }
 
   _getAuthenticatedUserId() async {
-    userId = await _secureStorageService.getValue(key: 'userId') ?? "";
+    userId = await _secureStorageService.getStringValue(key: 'userId') ?? "";
   }
 }

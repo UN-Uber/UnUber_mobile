@@ -9,6 +9,7 @@ import 'package:stacked_services/stacked_services.dart';
 // Project imports:
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/app/app.router.dart';
+import 'package:unuber_mobile/services/api/user_crud_service.dart';
 import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dart';
 
 /// The class StartupViewModel is the ViewModel for the startup route
@@ -17,15 +18,17 @@ class StartupViewModel extends BaseViewModel {
   final _navigationService= locator<NavigationService>();
   /// Service used to encrypt and persist in some data
   final _secureStorageService= locator<SecureStorageService>();
+  final _userCRUDService = locator<UserCRUDService>();
 
   StartupViewModel(){
     // Using a 3 seconds timer, then navigating to other route
     new Timer(const Duration(seconds: 3), _nextScreen);
+    _userCRUDService.setMinInfo();
   }
 
   /// The method _isSessionActive is used to check if the device has a token previously stored
   Future<bool> _isSessionActive() async {
-    String? token = await _secureStorageService.getValue(key: 'authToken');
+    String? token = await _secureStorageService.getStringValue(key: 'authToken');
     if (token != null){
       // token was stored
       if (!JwtDecoder.isExpired(token)){
