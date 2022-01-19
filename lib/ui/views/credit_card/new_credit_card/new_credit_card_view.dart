@@ -9,6 +9,7 @@ import 'package:unuber_mobile/ui/views/credit_card/credit_card_utils.dart';
 import 'package:unuber_mobile/ui/views/credit_card/new_credit_card/new_credit_card_viewmodel.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/entry_field.dart';
 import 'package:unuber_mobile/ui/widgets/atoms/submit_button.dart';
+import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
 class NewCreditCardView extends StatefulWidget {
   const NewCreditCardView({Key? key}) : super (key: key);
@@ -32,84 +33,85 @@ class _NewCreditCardViewState extends State<NewCreditCardView> {
             title: const Text(
               'Agregar Tarjeta',
               style: TextStyle(
-                color: Colors.white,
+                color: appColors.white,
               )
             ),
-            backgroundColor: Colors.black
+            backgroundColor: appColors.primary
           ),
 
-          body: SafeArea(
+          body: Container(
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
             child: Column(
               children: <Widget>[
                 Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      EntryField(
-                        title: 'Credit card number',
-                        textType: TextInputType.number,
-                        isPassword: false,
-                        onChange: (text) {
-                          setState(() {
-                            inputText = text;
-                          });
-                          model.changeCreditCard(text.replaceAll(" ", ""));
-                        },
-                        errorMessage: model.creditCardError,
-                        inputFormatters: [
-                          MaskedTextInputFormatter(
-                            mask: 'xxxx xxxx xxxx xxxx',
-                            separator: ' ',
-                          ),
-                        ],
-                        prefixIcon: _creditCardIcon.creditCardConditionalIcon(inputText)                 
-                      ),
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    EntryField(
+                      title: 'Credit card number',
+                      textType: TextInputType.number,
+                      isPassword: false,
+                      onChange: (text) {
+                        setState(() {
+                          inputText = text;
+                        });
+                        model.changeCreditCard(text.replaceAll(" ", ""));
+                      },
+                      errorMessage: model.creditCardError,
+                      inputFormatters: [
+                        MaskedTextInputFormatter(
+                          mask: 'xxxx xxxx xxxx xxxx',
+                          separator: ' ',
+                        ),
+                      ],
+                      prefixIcon: _creditCardIcon.creditCardConditionalIcon(inputText)                 
+                    ),
 
-                      EntryField(
-                        title: 'Due date',
-                        textType: TextInputType.number,
-                        isPassword: false,
-                        onChange: model.changeDueDate,
-                        errorMessage: model.dueDateError,
-                        inputFormatters: [
-                          MaskedTextInputFormatter(
-                            mask: 'xx/xx',
-                            separator: '/'
-                          ),
-                        ],
-                      ),
+                    EntryField(
+                      title: 'Due date',
+                      textType: TextInputType.number,
+                      isPassword: false,
+                      onChange: model.changeDueDate,
+                      errorMessage: model.dueDateError,
+                      inputFormatters: [
+                        MaskedTextInputFormatter(
+                          mask: 'xx/xx',
+                          separator: '/'
+                        ),
+                      ],
+                    ),
 
-                      EntryField(
-                        title: 'CVV',
-                        textType: TextInputType.number,
-                        isPassword: false,
-                        onChange: model.changeCvv,
-                        errorMessage: model.cvvError,
-                        inputFormatters: [
-                          MaskedTextInputFormatter(mask: "###", separator: "")
-                        ],                
-                      ),
-                    ],
-                  ),
+                    EntryField(
+                      title: 'CVV',
+                      textType: TextInputType.number,
+                      isPassword: false,
+                      onChange: model.changeCvv,
+                      errorMessage: model.cvvError,
+                      inputFormatters: [
+                        MaskedTextInputFormatter(mask: "###", separator: "")
+                      ],                
+                    ),
+                  ],
                 ),
+              ),
 
-                SubmitButton(text: "Agregar", onPressed: () {
-                  if (model.isValidForm) model.createCard();
-                  else {
-                    final snackBar = SnackBar(
-                      backgroundColor: Colors.redAccent,
-                      content: Text("Verifica los campos"),
-                      action: SnackBarAction(
-                        label: 'Cerrar',
-                        textColor: Colors.white,
-                        onPressed: () {}
-                        )
-                      );
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(snackBar);
-                      }
-                })
-              ]
+              SubmitButton(text: "Agregar", onPressed: () {
+                if (model.isValidForm) model.createCard();
+                else {
+                  final snackBar = SnackBar(
+                    backgroundColor: Colors.redAccent,
+                    content: Text("Verifica los campos"),
+                    action: SnackBarAction(
+                      label: 'Cerrar',
+                      textColor: Colors.white,
+                      onPressed: () {}
+                      )
+                    );
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackBar);
+                    }
+              })
+              ],
             ),
           ),
         )

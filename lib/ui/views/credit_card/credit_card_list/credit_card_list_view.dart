@@ -9,6 +9,7 @@ import 'package:unuber_mobile/models/credit_card.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_info/credit_card_info_view.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_list/credit_card_list_viewmodel.dart';
 import 'package:unuber_mobile/ui/views/credit_card/credit_card_utils.dart';
+import 'package:unuber_mobile/utils/colors.dart' as appColors;
 
 class CreditCardsListView extends StatefulWidget {
   const CreditCardsListView({Key? key}): super(key: key);
@@ -39,14 +40,14 @@ class _CreditCardsListViewState extends State<CreditCardsListView> {
                 color: Colors.white,
               )
             ),
-            backgroundColor: Colors.black,
+            backgroundColor: appColors.primary
           ),
 
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
               model.navigateToAddCreditCard();
             },
-            backgroundColor: Colors.black,
+            backgroundColor: appColors.primary,
             icon: Icon(Icons.add),
             label: Text('Agregar'),
           ),

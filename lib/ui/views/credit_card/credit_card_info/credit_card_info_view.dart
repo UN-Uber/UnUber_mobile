@@ -32,6 +32,7 @@ class _CreditCardsInfoViewState extends State<CreditCardInfo>{
         child: Scaffold(
           appBar: AppBar(
             title: Text("Detalles de la tarjeta"),
+            backgroundColor: appColors.primary
           ),
 
           body: Padding(
