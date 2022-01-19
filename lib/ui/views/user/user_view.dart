@@ -73,7 +73,7 @@ class _UserViewState extends State<UserView> {
                                 textType: TextInputType.text,
                                 onChange: (Value) {},
                                 errorMessage: "",
-                                title: "nombre",
+                                title: "Primer Nombre",
                               ),
                               SizedBox(
                                 height: 10,
@@ -84,21 +84,28 @@ class _UserViewState extends State<UserView> {
                                 textType: TextInputType.text,
                                 onChange: (Value) {},
                                 errorMessage: "",
-                                title: "segundo nombre",
+                                title: "Segundo Nombre",
                               ),
                               EntryField(
                                 initialValue: user.sureName,
                                 textType: TextInputType.text,
                                 onChange: (Value) {},
                                 errorMessage: "",
-                                title: "apellido",
+                                title: "Apellido(s)",
                               ),
                               EntryField(
-                                initialValue: user.email,
-                                textType: TextInputType.emailAddress,
+                                initialValue: user.sureName,
+                                textType: TextInputType.text,
                                 onChange: (Value) {},
                                 errorMessage: "",
-                                title: "email",
+                                title: "Email",
+                              ),
+                              EntryField(
+                                initialValue: user.sureName,
+                                textType: TextInputType.text,
+                                onChange: (Value) {},
+                                errorMessage: "",
+                                title: "Teléfono",
                               ),
                               TextFormField(
                                 initialValue: "por si acaso",
@@ -110,7 +117,7 @@ class _UserViewState extends State<UserView> {
                               ),
                               ElevatedButton(
                                   onPressed: () => {model.getUser()},
-                                  child: Text("texto"))
+                                  child: Text("Actualizar"))
                             ])
                           ],
                         );
