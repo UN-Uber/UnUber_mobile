@@ -74,8 +74,8 @@ class AuthService {
   /// The method _setAccessToken is used to persist the access token
   /// - @Param token is the access token to be stored
   _setAccessToken(String token) async {
-    await _secureStorageService.store(key: 'authToken', value: token);
-    print('token in AuthService => ${await _secureStorageService.getValue(key: 'authToken')}');
+    await _secureStorageService.storeString(key: 'authToken', value: token);
+    print('token in AuthService => ${await _secureStorageService.getStringValue(key: 'authToken')}');
   }
 
   /// The method _setAuthenticatedUserId is used to persist the id of the
@@ -84,6 +84,6 @@ class AuthService {
   _setAuthenticatedUserId(String token) async {
     Map<String, dynamic> tokenInfo = JwtDecoder.decode(token);
     String id = tokenInfo['id'].toString();
-    await _secureStorageService.store(key: 'userId', value: id);
+    await _secureStorageService.storeString(key: 'userId', value: id);
   }
 }
