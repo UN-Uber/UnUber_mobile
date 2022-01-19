@@ -15,10 +15,18 @@ class UserCRUDService {
   final _secureStorageService = locator<SecureStorageService>();
 
   /// Is the name of the user logged in the app
-  String userName = "";
+  String? _userName;
 
   /// Is the email of the user logged in the app
-  String email = "";
+  String? _email;
+
+  // Getters
+  String? get userName => this._userName;
+  String? get email => this._email;
+
+  UserCRUDService() {
+    setMinInfo();
+  }
 
   /// The method getUserInfo is used to query the api gateway for the user id info stored in the auth token
   /// - return a ServerResponseModel from the api gateway
@@ -27,12 +35,12 @@ class UserCRUDService {
 
     try {
       // Get auth token and user id
-      String? token = await _secureStorageService.getValue(key: 'authToken');
-      int? id =
-          int.parse(await _secureStorageService.getValue(key: 'userId') ?? );
+      String? token =
+          await _secureStorageService.getStringValue(key: 'authToken');
+      int? id = await _secureStorageService.getIntValue(key: 'userId');
 
-      if (token != null) {
-        // token exists
+      if (token != null && id != null) {
+        // token and id exists
         response = await getUserById(id: id, token: token);
       }
     } catch (excep) {
@@ -48,13 +56,13 @@ class UserCRUDService {
 
     if (response.data != null) {
       // Succesfull query to the api gateway
-      this.userName =
+      this._userName =
           '${response.data['getClient']['fName']} ${response.data['getClient']['sureName']}';
-      this.email = response.data['getClient']['email'];
+      this._email = response.data['getClient']['email'];
     } else {
       // Error in query
-      this.userName = 'Bienvenido Usuario!';
-      this.email = 'something@something.com';
+      this._userName = 'Bienvenido Usuario!';
+      this._email = 'something@something.com';
     }
   }
 
@@ -69,9 +77,10 @@ class UserCRUDService {
 
     try {
       // Get auth token and user id
-      String? token = await _secureStorageService.getValue(key: 'authToken');
+      String? token =
+          await _secureStorageService.getStringValue(key: 'authToken');
       int? id =
-          int.parse(await _secureStorageService.getValue(key: 'userId') ?? );
+          int.parse(await _secureStorageService.getIntValue(key: 'userId') ?? );
 
       if (token != null) {
         // token exists

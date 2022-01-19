@@ -24,10 +24,10 @@ class NavigationDrawerViewModel extends BaseViewModel {
   final _userCRUDService = locator<UserCRUDService>();
 
   /// Is the user name to display in the drawer
-  late String _user = _userCRUDService.userName;
+  String? _user;
 
   /// Is the email of the user to display in the drawer
-  late String _email = _userCRUDService.email;
+  String? _email;
 
   /// Is the image of the user to display in the drawer
   String _profileImage = 'assets/images/default_profile_image.png';
@@ -35,9 +35,14 @@ class NavigationDrawerViewModel extends BaseViewModel {
   /// Is the background image to disply in the user info card
   String _landscape = 'assets/images/decoration_landscape.jpg';
 
+  NavigationDrawerViewModel() {
+    _user = _userCRUDService.userName;
+    _email = _userCRUDService.email;
+  }
+
   // Getters
-  String get user => _user;
-  String get email => _email;
+  String get user => _user != null ? _user! : '';
+  String get email => _email != null ? _email! : '';
   String get profileImage => _profileImage;
   String get landscape => _landscape;
 
