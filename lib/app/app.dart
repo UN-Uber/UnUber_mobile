@@ -6,6 +6,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:unuber_mobile/services/api/auth_services.dart';
 import 'package:unuber_mobile/services/api/credit_card_services.dart';
 import 'package:unuber_mobile/services/api/user_crud_service.dart';
+import 'package:unuber_mobile/services/data_transfer/credit_card_data_service.dart';
 import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dart';
 import 'package:unuber_mobile/services/validations/credit_card_validation_service.dart';
 import 'package:unuber_mobile/services/validations/login_validation_service.dart';
@@ -56,6 +57,7 @@ import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
   LazySingleton(classType: CreditCardService),
   LazySingleton(classType: SignupValidationService),
   LazySingleton(classType: SecureStorageService),
+  LazySingleton(classType: CreditCardDataService),
   LazySingleton(classType: UserCRUDService)
 ])
 class AppSetup {}
