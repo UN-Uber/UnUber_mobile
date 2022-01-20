@@ -12,3 +12,7 @@ const fillInput = Color(0xfff3f3f4);
 
 // Third party colors
 const googleButton = Color(0xFFF30504);
+
+// Other Colors
+const grayDisabled = const Color(0xFFDADADA);
+const blackButton = const Color(0xFF000000);

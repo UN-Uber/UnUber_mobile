@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:flutter/cupertino.dart';
 import 'package:graphql/client.dart';
 
 // Project imports:
@@ -14,12 +15,12 @@ Future<ServerResponseModel> updateUser(String token,
     required int active,
     required String email,
     required String telephone}) async {
+  String image = "";
   const String mutationString = r'''
   mutation Mutation($idClient: Int!, $client: ClientInput!) {
     updateClient(idClient: $idClient, client: $client)
   }
   ''';
-
   Map<String, dynamic> mutationInput = {
     'client': {
       'fName': firstName,
@@ -27,8 +28,11 @@ Future<ServerResponseModel> updateUser(String token,
       'sureName': surename,
       'active': active,
       'email': email,
-      'telNumber': telephone
-    }
+      'telNumber': telephone,
+      'password': "",
+      "image": image
+    },
+    "idClient": idClient
   };
 
   MutationOptions options =

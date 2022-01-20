@@ -69,55 +69,53 @@ class _UserViewState extends State<UserView> {
                             ),
                             Column(children: <Widget>[
                               EntryField(
-                                initialValue: user!.fName,
-                                textType: TextInputType.text,
-                                onChange: (Value) {},
-                                errorMessage: "",
-                                title: "Primer Nombre",
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              EntryField(
-                                initialValue:
-                                    user.sName != null ? user.sName! : "",
-                                textType: TextInputType.text,
-                                onChange: (Value) {},
-                                errorMessage: "",
-                                title: "Segundo Nombre",
+                                initialValue: user!.fName +
+                                    " " +
+                                    (user.sName != null ? user.sName! : ""),
+                                textType: TextInputType.name,
+                                onChange: model.changeName,
+                                errorMessage: model.nameError,
+                                title: "Nombre",
                               ),
                               EntryField(
                                 initialValue: user.sureName,
-                                textType: TextInputType.text,
-                                onChange: (Value) {},
-                                errorMessage: "",
+                                textType: TextInputType.name,
+                                onChange: model.changeSurename,
+                                errorMessage: model.surenameError,
                                 title: "Apellido(s)",
                               ),
                               EntryField(
-                                initialValue: user.sureName,
-                                textType: TextInputType.text,
-                                onChange: (Value) {},
-                                errorMessage: "",
+                                initialValue: user.email,
+                                textType: TextInputType.emailAddress,
+                                onChange: model.changeEmail,
+                                errorMessage: model.emailError,
                                 title: "Email",
+                                isEnabled: false,
                               ),
                               EntryField(
-                                initialValue: user.sureName,
-                                textType: TextInputType.text,
-                                onChange: (Value) {},
-                                errorMessage: "",
+                                initialValue: user.telNumber,
+                                textType: TextInputType.emailAddress,
+                                onChange: model.changeTelephone,
+                                errorMessage: model.telephoneError,
                                 title: "Teléfono",
+                                isEnabled: false,
                               ),
-                              TextFormField(
-                                initialValue: "por si acaso",
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    enabled: false,
-                                    filled: true,
-                                    fillColor: appColors.fillInput),
+                              SizedBox(
+                                height: 20,
                               ),
                               ElevatedButton(
-                                  onPressed: () => {model.getUser()},
-                                  child: Text("Actualizar"))
+                                  onPressed: () => {model.updateUser()},
+                                  child: Text("Actualizar"),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: appColors.blackButton)),
+                              SizedBox(
+                                height: 50,
+                              ),
+                              ElevatedButton(
+                                  onPressed: () => {model.deleteUser()},
+                                  child: Text("Eliminar Usuario"),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: appColors.primary)),
                             ])
                           ],
                         );

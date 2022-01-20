@@ -87,7 +87,9 @@ class EntryField extends StatelessWidget {
                   decoration: InputDecoration(
                       errorText: this.errorMessage,
                       border: InputBorder.none,
-                      fillColor: appColors.fillInput,
+                      fillColor: this.isEnabled == true
+                          ? appColors.fillInput
+                          : appColors.grayDisabled,
                       filled: true,
                       hintText: this.hintText,
                       suffixIcon:

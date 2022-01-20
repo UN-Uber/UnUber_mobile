@@ -44,8 +44,12 @@ class UserViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  navigateToHome() {
-    _navigationService.clearStackAndShow(Routes.homeView);
+  reloadFrame() {
+    _navigationService.clearTillFirstAndShow(Routes.userView);
+  }
+
+  exitApp() {
+    _navigationService.clearStackAndShow(Routes.loginView);
   }
 
   /// Is the title of the form
@@ -116,15 +120,15 @@ class UserViewModel extends BaseViewModel {
     String fName = _signupValidationService.validFirstName;
     String? sName = _signupValidationService.validSecondName;
     String sureName = _signupValidationService.validSurename;
-    String email = _loginValidationService.validEmail;
-    String telephone = _loginValidationService.validTelephone;
+    String email = _signupValidationService.validEmail;
+    String telephone = _signupValidationService.validTelephone;
     //String password = _loginValidationService.validPassword;
-
     try {
       // Try to authorice in the api gateway and get an auth token
       _isLoading = true;
       ServerResponseModel response = await _userService.updateUserInfo(
           firstName: fName,
+          secondName: sName,
           surename: sureName,
           active: 1,
           email: email,
@@ -134,7 +138,7 @@ class UserViewModel extends BaseViewModel {
       _isLoading = false;
       if (!response.hasError) {
         // query succesfull
-        navigateToHome();
+        reloadFrame();
         _userService.setMinInfo();
       } else {
         // query has an error, so check for status code and do something
@@ -164,7 +168,6 @@ class UserViewModel extends BaseViewModel {
     try {
       _isLoading = true;
       ServerResponseModel response = await _userService.getUserInfo();
-      print(response.data);
       _isLoading = false;
       if (!response.hasError) {
         user = new User(
@@ -175,6 +178,14 @@ class UserViewModel extends BaseViewModel {
             email: response.data["getClient"]["email"],
             telNumber: response.data["getClient"]["telNumber"],
             image: response.data["getClient"]["image"]);
+        if (user.sName != null) {
+          changeName(user.fName + " " + user.sName!);
+        } else {
+          changeName(user.fName);
+        }
+        changeSurename(user.sureName);
+        changeTelephone(user.telNumber);
+        changeEmail(user.email);
       } else {
         switch (response.statusCode) {
           case 400:
@@ -194,7 +205,41 @@ class UserViewModel extends BaseViewModel {
       CustomLogger().logger.e(excep);
       isLoading = false;
     }
+
     return user;
+  }
+
+  Future deleteUser() async {
+    try {
+      // Try to authorice in the api gateway and get an auth token
+      _isLoading = true;
+      ServerResponseModel response = await _userService.deleteClientUser();
+      //ServerResponseModel response = await _authService.getToken(
+      //  email: email, telephone: telephone, password: password);
+      _isLoading = false;
+      if (!response.hasError) {
+        // query succesfull
+        exitApp();
+      } else {
+        // query has an error, so check for status code and do something
+        switch (response.statusCode) {
+          case 400:
+            _showBasicDialog(description: constraints.CONNECTION_ERROR_MESSAGE);
+            break;
+          case 401:
+            _showBasicDialog(
+                description:
+                    'Alguno de los parametros ingresados es incorrecto');
+            break;
+          default:
+            _showBasicDialog(description: constraints.CONNECTION_ERROR_MESSAGE);
+            CustomLogger().logger.e('error de servidor');
+        }
+      }
+    } catch (excep) {
+      CustomLogger().logger.e(excep);
+      isLoading = false;
+    }
   }
 
   /// The method _showBasicDialog display an error message to the user

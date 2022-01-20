@@ -5,6 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/services/api/errors/api_errors.dart';
+import 'package:unuber_mobile/services/api/qraphql/mutations/user/delete_user.dart';
 import 'package:unuber_mobile/services/api/qraphql/mutations/user/update_user.dart';
 import 'package:unuber_mobile/services/api/qraphql/queries/user_info/get_user_by_id.dart';
 import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dart';
@@ -79,18 +80,37 @@ class UserCRUDService {
       // Get auth token and user id
       String? token =
           await _secureStorageService.getStringValue(key: 'authToken');
-      int? id =
-          int.parse(await _secureStorageService.getIntValue(key: 'userId') ?? );
+      int? id = await _secureStorageService.getIntValue(key: 'userId');
 
-      if (token != null) {
+      if (token != null && id != null) {
         // token exists
         response = await updateUser(token,
             idClient: id,
             firstName: firstName,
+            secondName: secondName,
             surename: surename,
             active: active,
             email: email,
             telephone: telephone);
+      }
+    } catch (excep) {
+      response = errorResponse(excep);
+    }
+
+    return response;
+  }
+
+  Future<ServerResponseModel> deleteClientUser() async {
+    late ServerResponseModel response;
+    try {
+      // Get auth token and user id
+      String? token =
+          await _secureStorageService.getStringValue(key: 'authToken');
+      int? id = await _secureStorageService.getIntValue(key: 'userId');
+
+      if (token != null && id != null) {
+        // token exists
+        response = await deleteUser(token, id);
       }
     } catch (excep) {
       response = errorResponse(excep);
