@@ -19,6 +19,7 @@ import 'package:unuber_mobile/ui/views/login/login_view.dart';
 import 'package:unuber_mobile/ui/views/set_points/set_points_view.dart';
 import 'package:unuber_mobile/ui/views/signup/signup_view.dart';
 import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
+import 'package:unuber_mobile/ui/views/user/user_view.dart';
 
 /// The class AppSetup is used to define the routes and services to use for the auto-routing functionality
 /// * @Routes is the array of routes to the views of the project
@@ -44,6 +45,7 @@ import 'package:unuber_mobile/ui/views/startup/startup_view.dart';
   MaterialRoute(page: LoginView, path: '/login'),
   MaterialRoute(page: HomeView, path: '/home'),
   MaterialRoute(page: ForgotPasswordView, path: '/forgot'),
+  MaterialRoute(page: UserView, path: '/user'),
   MaterialRoute(page: NewCreditCardView, path: '/new-credit-card'),
   MaterialRoute(page: CreditCardsListView, path: '/my-cards'),
   MaterialRoute(page: SetPointsView, path: '/points'),

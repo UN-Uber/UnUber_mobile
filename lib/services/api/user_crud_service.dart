@@ -5,6 +5,8 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:unuber_mobile/app/app.locator.dart';
 import 'package:unuber_mobile/models/server_response_model.dart';
 import 'package:unuber_mobile/services/api/errors/api_errors.dart';
+import 'package:unuber_mobile/services/api/qraphql/mutations/user/delete_user.dart';
+import 'package:unuber_mobile/services/api/qraphql/mutations/user/update_user.dart';
 import 'package:unuber_mobile/services/api/qraphql/queries/user_info/get_user_by_id.dart';
 import 'package:unuber_mobile/services/secure_storage/secure_storage_service.dart';
 
@@ -15,6 +17,7 @@ class UserCRUDService {
 
   /// Is the name of the user logged in the app
   String? _userName;
+
   /// Is the email of the user logged in the app
   String? _email;
 
@@ -22,7 +25,7 @@ class UserCRUDService {
   String? get userName => this._userName;
   String? get email => this._email;
 
-  UserCRUDService(){
+  UserCRUDService() {
     setMinInfo();
   }
 
@@ -31,17 +34,17 @@ class UserCRUDService {
   Future<ServerResponseModel> getUserInfo() async {
     late ServerResponseModel response;
 
-    try{
+    try {
       // Get auth token and user id
-      String? token = await _secureStorageService.getStringValue(key: 'authToken');
+      String? token =
+          await _secureStorageService.getStringValue(key: 'authToken');
       int? id = await _secureStorageService.getIntValue(key: 'userId');
 
-      if (token != null && id != null){
+      if (token != null && id != null) {
         // token and id exists
         response = await getUserById(id: id, token: token);
       }
-    }
-    catch(excep){
+    } catch (excep) {
       response = errorResponse(excep);
     }
 
@@ -52,15 +55,67 @@ class UserCRUDService {
   Future setMinInfo() async {
     final response = await getUserInfo();
 
-    if (response.data != null){
+    if (response.data != null) {
       // Succesfull query to the api gateway
-      this._userName = '${response.data['getClient']['fName']} ${response.data['getClient']['sureName']}';
+      this._userName =
+          '${response.data['getClient']['fName']} ${response.data['getClient']['sureName']}';
       this._email = response.data['getClient']['email'];
-    }
-    else{
+    } else {
       // Error in query
       this._userName = 'Bienvenido Usuario!';
       this._email = 'something@something.com';
     }
+  }
+
+  Future<ServerResponseModel> updateUserInfo(
+      {required String firstName,
+      String? secondName,
+      required String surename,
+      required int active,
+      required String email,
+      required String telephone}) async {
+    late ServerResponseModel response;
+
+    try {
+      // Get auth token and user id
+      String? token =
+          await _secureStorageService.getStringValue(key: 'authToken');
+      int? id = await _secureStorageService.getIntValue(key: 'userId');
+
+      if (token != null && id != null) {
+        // token exists
+        response = await updateUser(token,
+            idClient: id,
+            firstName: firstName,
+            secondName: secondName,
+            surename: surename,
+            active: active,
+            email: email,
+            telephone: telephone);
+      }
+    } catch (excep) {
+      response = errorResponse(excep);
+    }
+
+    return response;
+  }
+
+  Future<ServerResponseModel> deleteClientUser() async {
+    late ServerResponseModel response;
+    try {
+      // Get auth token and user id
+      String? token =
+          await _secureStorageService.getStringValue(key: 'authToken');
+      int? id = await _secureStorageService.getIntValue(key: 'userId');
+
+      if (token != null && id != null) {
+        // token exists
+        response = await deleteUser(token, id);
+      }
+    } catch (excep) {
+      response = errorResponse(excep);
+    }
+
+    return response;
   }
 }

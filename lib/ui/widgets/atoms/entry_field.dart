@@ -18,7 +18,7 @@ class EntryField extends StatelessWidget {
 
   /// Suffix text to place in the text field after user input
   final String? suffixText;
-  
+
   /// Prefix text to place in the text field before user input
   final String? prefixText;
 
@@ -87,15 +87,15 @@ class EntryField extends StatelessWidget {
                   decoration: InputDecoration(
                       errorText: this.errorMessage,
                       border: InputBorder.none,
-                      fillColor: appColors.fillInput,
+                      fillColor: this.isEnabled == true
+                          ? appColors.fillInput
+                          : appColors.grayDisabled,
                       filled: true,
                       hintText: this.hintText,
-                      suffixIcon: this.suffixIcon != null
-                          ? this.suffixIcon
-                          : null,
-                      prefixIcon: this.prefixIcon != null
-                          ? (this.prefixIcon)
-                          : null,
+                      suffixIcon:
+                          this.suffixIcon != null ? this.suffixIcon : null,
+                      prefixIcon:
+                          this.prefixIcon != null ? (this.prefixIcon) : null,
                       suffixText: this.suffixText,
                       prefixText: this.prefixText,
                       enabled: this.isEnabled))
