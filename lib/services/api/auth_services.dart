@@ -75,7 +75,6 @@ class AuthService {
   /// - @Param token is the access token to be stored
   _setAccessToken(String token) async {
     await _secureStorageService.storeString(key: 'authToken', value: token);
-    print('token in AuthService => ${await _secureStorageService.getStringValue(key: 'authToken')}');
   }
 
   /// The method _setAuthenticatedUserId is used to persist the id of the
