@@ -17,14 +17,14 @@ class VariablesSelectView extends StatelessWidget {
           SliverAppBar(
             collapsedHeight: 400,
             expandedHeight: 30,
-            flexibleSpace: Container(color: appColors.primary),
+            flexibleSpace: Container()
           ),
           SliverAppBar(
               collapsedHeight: 100,
               expandedHeight: 20,
               flexibleSpace: Container(
-                color: appColors.white,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  color: appColors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child:
                       SubmitButton(text: 'Pedir Servicio', onPressed: () {}))),
           SliverFillRemaining(

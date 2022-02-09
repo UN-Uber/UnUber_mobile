@@ -18,9 +18,9 @@ class CarSelectCard extends StatelessWidget {
         children: [
           Image(
             image: AssetImage('assets/images/service_car.png'),
-            height: 100),
-          Text(this.title, style: TextStyle(fontSize: 32)),
-          Text(this.price, style: TextStyle(fontSize: 32))
+            height: 80),
+          Text(this.title, style: TextStyle(fontSize: 20)),
+          Text(this.price, style: TextStyle(fontSize: 20))
         ],
       ));
   }
