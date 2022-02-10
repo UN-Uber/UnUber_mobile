@@ -50,10 +50,10 @@ class HomeView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Icon(Icons.directions_car_rounded,
-                                  color: appColors.secondary, size: 75),
+                                  color: appColors.secondary, size: 60),
                               Text('Iniciar un nuevo viaje!',
                                   style: TextStyle(
-                                      color: appColors.secondary, fontSize: 36))
+                                      color: appColors.secondary, fontSize: 25))
                             ]),
                       )),
                   SizedBox(height: 25),
